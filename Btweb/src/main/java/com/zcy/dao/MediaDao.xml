@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zcy.dao.MediaDao">
+	<insert id="insertMedia" parameterType="Media">
+		<!-- insert into t_media(name,photoUrl,realeaseYear,types,area,language,mainActors,Story,insertDate) values(#{name},#{photoUrl},#{realeaseYear},#{types},#{area},#{language},#{mainActors},#{Story},#{insertDate})
+	 -->
+	</insert>
+	
+	<!-- 根据视频类型随机获取 -->
+	<select id="getMediaRandNumByMediaTypeYear" resultType="com.zcy.bean.Media">
+		select id,mediatype,name,coverurl,realeaseyear,styles,area,language from t_media where mediatype = #{mediaType} order by rand() limit #{num} 
+	</select>
+	
+	<!-- 根据条件查询 -->
+	<select id="getMediaByCondition" resultType="com.zcy.bean.Media">
+		select id,mediatype,name,coverurl,realeaseyear,styles,area,language from t_media where 1=1
+		<if test="mediaType != null and mediaType != 0">
+			and mediaType = #{mediaType}
+		</if>
+		<if test="style != null and style != ''">
+			and styles like "${style}"
+		</if>
+		<if test="realeaseYear != null and realeaseYear != 0">
+			and realeaseYear = #{realeaseYear}
+		</if>
+		<if test="area != null and area != ''">
+			and area = #{area}
+		</if>
+		<if test="language != null and language != ''">
+			and language = #{language}
+		</if>
+		limit #{pageStartNum},#{pageSize}
+	</select>
+	
+	<!-- 根据条件查询获取个数 -->
+	<select id="getMediaByConditionTotle" resultType="java.lang.Integer">
+		select count(id) from t_media where 1=1
+				<if test="mediaType != null and mediaType != 0">
+			and mediaType = #{mediaType}
+		</if>
+		<if test="style != null and style != ''">
+			and styles like "${style}"
+		</if>
+		<if test="realeaseYear != null and realeaseYear != 0">
+			and realeaseYear = #{realeaseYear}
+		</if>
+		<if test="area != null and area != ''">
+			and area = #{area}
+		</if>
+		<if test="language != null and language != ''">
+			and language = #{language}
+		</if>
+	</select>
+	
+	<!-- 根据id获取视频 -->
+	<select id="getMediaById" resultType="com.zcy.bean.Media">
+		select id,mediatype,name,coverurl,realeaseyear,styles,area,language,mainactors,story from t_media where id = #{mediaId}
+	</select>
+	
+	<!-- 根据id获取下载地址 -->
+	<select id="getMediaUrlById" resultType="com.zcy.bean.MediaUrl">
+		select id,resolution,urls from t_media_url where mediaId = #{mediaId}
+	</select>
+	
+	<!-- 模糊查询 -->
+	<select id="getMediaByFuzzy" resultType="com.zcy.bean.MediaUrl">
+		select id,mediatype,name,coverurl,realeaseyear,styles,area,language from t_media where 1=1 or mediatype like "%"#{searchValue}"%" or name like "%"#{searchValue}"%" or realeaseyear like "%"#{searchValue}"%" or styles like "%"#{searchValue}"%" or area like "%"#{searchValue}"%" or language like "%"#{searchValue}"%"
+	</select>
+	
+	
+</mapper>
