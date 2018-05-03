@@ -11,6 +11,12 @@ public class Media {
 	
 	private Integer id;
 	private String mediaType;
+	public String getMediaType() {
+		return mediaType;
+	}
+	public void setMediaType(String mediaType) {
+		this.mediaType = mediaType;
+	}
 	private String name;
 	private String coverUrl;
 	private Integer realeaseYear;
@@ -26,12 +32,6 @@ public class Media {
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public String getMediaType() {
-		return mediaType;
-	}
-	public void setMediaType(String mediaType) {
-		this.mediaType = mediaType;
 	}
 	public String getName() {
 		return name;
