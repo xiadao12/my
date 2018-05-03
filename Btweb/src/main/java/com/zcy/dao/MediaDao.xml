@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and mediaType = #{mediaType}
 		</if>
 		<if test="style != null and style != ''">
-			and styles like "${style}"
+			and styles like "%"#{style}"%"
 		</if>
 		<if test="realeaseYear != null and realeaseYear != 0">
 			and realeaseYear = #{realeaseYear}
@@ -38,11 +38,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 根据条件查询获取个数 -->
 	<select id="getMediaByConditionTotle" resultType="java.lang.Integer">
 		select count(id) from t_media where 1=1
-				<if test="mediaType != null and mediaType != 0">
+		<if test="mediaType != null and mediaType != 0">
 			and mediaType = #{mediaType}
 		</if>
 		<if test="style != null and style != ''">
-			and styles like "${style}"
+			and styles like "%"#{style}"%"
 		</if>
 		<if test="realeaseYear != null and realeaseYear != 0">
 			and realeaseYear = #{realeaseYear}

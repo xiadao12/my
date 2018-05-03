@@ -33,9 +33,9 @@ public class MediaServiceImpl implements MediaService{
 		
 		int searchTole = Constant.SHOWCOLNUM * Constant.SHOWROWNUM;
 		
-		List<Media> MovieList = mediaDao.getMediaRandNumByMediaTypeYear(searchTole, Constant.MEIDATYPE_MOVIE);
-		List<Media> TvList = mediaDao.getMediaRandNumByMediaTypeYear(searchTole, Constant.MEIDATYPE_TV);
-		List<Media> AnimationList = mediaDao.getMediaRandNumByMediaTypeYear(searchTole, Constant.MEIDATYPE_ANIMATION);
+		List<Media> MovieList = mediaDao.getMediaRandNumByMediaTypeYear(searchTole, "电影");
+		List<Media> TvList = mediaDao.getMediaRandNumByMediaTypeYear(searchTole, "电视剧");
+		List<Media> AnimationList = mediaDao.getMediaRandNumByMediaTypeYear(searchTole, "动漫");
 		
 		Map<String,List<Media>> allMediaMap = new HashMap<String,List<Media>>();
 
@@ -45,7 +45,7 @@ public class MediaServiceImpl implements MediaService{
 		return allMediaMap;
 	}
 
-	public Map getMediaByCondition(int pageNum,int mediaType, String style, int realeaseYear, String area,
+	public Map getMediaByCondition(int pageNum,String mediaType, String style, int realeaseYear, String area,
 			String language) {
 		
 		List<Media> mediaData = mediaDao.getMediaByCondition((pageNum-1)*Constant.CONDITIONMEDIAPAGESIZE,Constant.CONDITIONMEDIAPAGESIZE ,mediaType, style, realeaseYear, area, language);

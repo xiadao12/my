@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 public class Media {
 	
 	private Integer id;
-	private Integer mediaType;
+	private String mediaType;
 	private String name;
 	private String coverUrl;
 	private Integer realeaseYear;
@@ -27,10 +27,10 @@ public class Media {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getMediaType() {
+	public String getMediaType() {
 		return mediaType;
 	}
-	public void setMediaType(Integer mediaType) {
+	public void setMediaType(String mediaType) {
 		this.mediaType = mediaType;
 	}
 	public String getName() {

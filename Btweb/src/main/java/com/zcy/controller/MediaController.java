@@ -47,26 +47,9 @@ public class MediaController {
 	}
 	
 	@RequestMapping("/searchConditionMedia.do")
-	public @ResponseBody String searchConditionMedia(String mediaTypeName, String style, String realeaseYearString, String area,
+	public @ResponseBody String searchConditionMedia(String mediaType, String style, String realeaseYearString, String area,
 			String language,String pageNumString)
 	{
-		int mediaType = 0;
-		if(Util.judgeNotNull(mediaTypeName))
-		{
-			if("电影".equals(mediaTypeName))
-			{
-				mediaType = Constant.MEIDATYPE_MOVIE;
-			}
-			else if("电视剧".equals(mediaTypeName))
-			{
-				mediaType = Constant.MEIDATYPE_TV;
-			}else if("动漫".equals(mediaTypeName))
-			{
-				mediaType = Constant.MEIDATYPE_ANIMATION;
-			}
-				
-		}
-
 		int realeaseYear = 0;
 		if(Util.judgeNotNull(realeaseYearString))
 		{

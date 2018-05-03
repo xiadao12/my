@@ -19,7 +19,7 @@ use db_btweb;
  */
 create table t_media(
 	id int not null auto_increment,-- 主键id
-	mediatype int,				-- 视频种类，电影，电视剧
+	mediatype varchar(20),				-- 视频种类，电影，电视剧
 	name varchar(100),			-- 视频名
 	coverurl varchar(200),		-- 封面路径
 	realeaseyear int,			-- 上映年份
@@ -47,7 +47,7 @@ create table t_media_url(
 
 create table t_media_temp(
 	id int not null auto_increment,-- 主键id
-	mediatype int,				-- 视频种类，电影，电视剧
+	mediatype varchar(20),				-- 视频种类，电影，电视剧
 	name varchar(100),			-- 视频名
 	coverurl varchar(200),		-- 封面路径
 	realeaseyear int,			-- 上映年份

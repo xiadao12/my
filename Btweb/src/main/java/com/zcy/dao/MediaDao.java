@@ -10,11 +10,11 @@ import com.zcy.bean.MediaUrl;
 public interface MediaDao {
 	public void insertMedia(Media media);
 	//根据媒体和上映日期类型随机取几条
-	public List<Media> getMediaRandNumByMediaTypeYear(@Param("num")int num,@Param("mediaType")int mediaType);
+	public List<Media> getMediaRandNumByMediaTypeYear(@Param("num")int num,@Param("mediaType")String mediaType);
 	//根据条件搜索
-	public List<Media> getMediaByCondition(@Param("pageStartNum")int pageStartNum,@Param("pageSize")int pageSize,@Param("mediaType")int mediaType,@Param("style")String style,@Param("realeaseYear")int realeaseYear,@Param("area")String area,@Param("language")String language);
+	public List<Media> getMediaByCondition(@Param("pageStartNum")int pageStartNum,@Param("pageSize")int pageSize,@Param("mediaType")String mediaType,@Param("style")String style,@Param("realeaseYear")int realeaseYear,@Param("area")String area,@Param("language")String language);
 	//根据条件查询获取所有的条数
-	public int getMediaByConditionTotle(@Param("mediaType")int mediaType,@Param("style")String style,@Param("realeaseYear")int realeaseYear,@Param("area")String area,@Param("language")String language);
+	public int getMediaByConditionTotle(@Param("mediaType")String mediaType,@Param("style")String style,@Param("realeaseYear")int realeaseYear,@Param("area")String area,@Param("language")String language);
 	//public List<Media> getMediaRandNumByMediaTypeYear();
 	//根据id搜索media
 	public Media getMediaById(@Param("mediaId")int mediaId);
