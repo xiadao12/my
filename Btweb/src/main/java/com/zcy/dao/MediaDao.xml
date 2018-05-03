@@ -5,26 +5,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.zcy.dao.MediaDao">
 	<insert id="insertMedia" parameterType="Media">
-		<!-- insert into t_media(name,photoUrl,realeaseYear,types,area,language,mainActors,Story,insertDate) values(#{name},#{photoUrl},#{realeaseYear},#{types},#{area},#{language},#{mainActors},#{Story},#{insertDate})
+		<!-- insert into t_media(name,photoUrl,releaseYear,types,area,language,mainActors,Story,insertDate) values(#{name},#{photoUrl},#{releaseYear},#{types},#{area},#{language},#{mainActors},#{Story},#{insertDate})
 	 -->
 	</insert>
 	
 	<!-- 根据视频类型随机获取 -->
 	<select id="getMediaRandNumByMediaTypeYear" resultType="com.zcy.bean.Media">
-		select id,mediatype,name,coverurl,realeaseyear,styles,area,language from t_media where mediatype = #{mediaType} order by rand() limit #{num} 
+		select id,mediatype,name,coverurl,releaseyear,styles,area,language from t_media where mediatype = #{mediaType} order by rand() limit #{num} 
 	</select>
 	
 	<!-- 根据条件查询 -->
 	<select id="getMediaByCondition" resultType="com.zcy.bean.Media">
-		select id,mediatype,name,coverurl,realeaseyear,styles,area,language from t_media where 1=1
+		select id,mediatype,name,coverurl,releaseyear,styles,area,language from t_media where 1=1
 		<if test="mediaType != null and mediaType != 0">
 			and mediaType = #{mediaType}
 		</if>
 		<if test="style != null and style != ''">
 			and styles like "%"#{style}"%"
 		</if>
-		<if test="realeaseYear != null and realeaseYear != 0">
-			and realeaseYear = #{realeaseYear}
+		<if test="releaseYear != null and releaseYear != 0">
+			and releaseYear = #{releaseYear}
 		</if>
 		<if test="area != null and area != ''">
 			and area = #{area}
@@ -44,8 +44,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="style != null and style != ''">
 			and styles like "%"#{style}"%"
 		</if>
-		<if test="realeaseYear != null and realeaseYear != 0">
-			and realeaseYear = #{realeaseYear}
+		<if test="releaseYear != null and releaseYear != 0">
+			and releaseYear = #{releaseYear}
 		</if>
 		<if test="area != null and area != ''">
 			and area = #{area}
@@ -57,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 根据id获取视频 -->
 	<select id="getMediaById" resultType="com.zcy.bean.Media">
-		select id,mediatype,name,coverurl,realeaseyear,styles,area,language,mainactors,story from t_media where id = #{mediaId}
+		select id,mediatype,name,coverurl,releaseyear,styles,area,language,mainactors,story from t_media where id = #{mediaId}
 	</select>
 	
 	<!-- 根据id获取下载地址 -->
@@ -65,9 +65,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id,resolution,urls from t_media_url where mediaId = #{mediaId}
 	</select>
 	
-	<!-- 模糊查询 -->
-	<select id="getMediaByFuzzy" resultType="com.zcy.bean.MediaUrl">
-		select id,mediatype,name,coverurl,realeaseyear,styles,area,language from t_media where 1=1 or mediatype like "%"#{searchValue}"%" or name like "%"#{searchValue}"%" or realeaseyear like "%"#{searchValue}"%" or styles like "%"#{searchValue}"%" or area like "%"#{searchValue}"%" or language like "%"#{searchValue}"%"
+	<!-- 模糊查询 or cast(releaseyear as varchar(20)) like "%"#{searchValue}"%" -->
+	<select id="getMediaByFuzzy" resultType="com.zcy.bean.Media">
+		select id,mediatype,name,coverurl,releaseyear,styles,area,language,story from t_media where 
+			 name like "%"#{searchValue}"%" 
+			 or mediatype like "%"#{searchValue}"%" 
+			 or cast(releaseyear as char) like "%"#{searchValue}"%" 
+			 or styles like "%"#{searchValue}"%" 
+			 or area like "%"#{searchValue}"%" 
+			 or language like "%"#{searchValue}"%"
+			 limit #{pageStartNum},#{pageSize}
+		
+	</select>
+	<!-- 模糊查询总数 -->
+	<select id="getMediaByFuzzyTotle" resultType="java.lang.Integer">
+		select count(id) from t_media where  
+			 name like "%"#{searchValue}"%" 
+			 or mediatype like "%"#{searchValue}"%" 
+			 or cast(releaseyear as char) like "%"#{searchValue}"%" 
+			 or styles like "%"#{searchValue}"%" 
+			 or area like "%"#{searchValue}"%" 
+			 or language like "%"#{searchValue}"%"
 	</select>
 	
 	

@@ -47,13 +47,13 @@ public class MediaController {
 	}
 	
 	@RequestMapping("/searchConditionMedia.do")
-	public @ResponseBody String searchConditionMedia(String mediaType, String style, String realeaseYearString, String area,
+	public @ResponseBody String searchConditionMedia(String mediaType, String style, String releaseYearString, String area,
 			String language,String pageNumString)
 	{
-		int realeaseYear = 0;
-		if(Util.judgeNotNull(realeaseYearString))
+		int releaseYear = 0;
+		if(Util.judgeNotNull(releaseYearString))
 		{
-			realeaseYear = Integer.parseInt(realeaseYearString);
+			releaseYear = Integer.parseInt(releaseYearString);
 		}
 		
 		int pageNum = 1;
@@ -62,7 +62,7 @@ public class MediaController {
 			pageNum = Integer.parseInt(pageNumString);
 		}
 		
-		Map mediaDataMap = mediaService.getMediaByCondition(pageNum, mediaType, style, realeaseYear, area, language);
+		Map mediaDataMap = mediaService.getMediaByCondition(pageNum, mediaType, style, releaseYear, area, language);
 		ObjectMapper objectMapper = new ObjectMapper();
 		String returnString = "";
 		try {
@@ -89,10 +89,18 @@ public class MediaController {
 	}
 	
 	//模糊查询
-	@RequestMapping("/获取数据失败.do")
-	public void searchByFuzzy(String searchValue)
+	@RequestMapping("/searchByFuzzy.do")
+	public @ResponseBody String searchByFuzzy(String searchValue,int pageNum)
 	{
-		System.out.println("搜索:" + searchValue);
+		Map mediaDataMap = mediaService.getMediaByFuzzy(searchValue,pageNum);
+		ObjectMapper objectMapper = new ObjectMapper();
+		String returnString = "";
+		try {
+			returnString = objectMapper.writeValueAsString(mediaDataMap);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return returnString;
 	}
 	
 }

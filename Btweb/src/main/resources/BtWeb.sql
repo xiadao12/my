@@ -22,7 +22,7 @@ create table t_media(
 	mediatype varchar(20),				-- 视频种类，电影，电视剧
 	name varchar(100),			-- 视频名
 	coverurl varchar(200),		-- 封面路径
-	realeaseyear int,			-- 上映年份
+	releaseyear int,			-- 上映年份
 	styles varchar(50),			-- 类型
 	area varchar(20),			-- 地区
 	language varchar(20),		-- 语言
@@ -50,7 +50,7 @@ create table t_media_temp(
 	mediatype varchar(20),				-- 视频种类，电影，电视剧
 	name varchar(100),			-- 视频名
 	coverurl varchar(200),		-- 封面路径
-	realeaseyear int,			-- 上映年份
+	releaseyear int,			-- 上映年份
 	styles varchar(50),			-- 类型
 	area varchar(20),			-- 地区
 	language varchar(20),		-- 语言

@@ -19,7 +19,7 @@ public class Media {
 	}
 	private String name;
 	private String coverUrl;
-	private Integer realeaseYear;
+	private Integer releaseYear;
 	private String styles;
 	private String area;
 	private String language;
@@ -45,11 +45,11 @@ public class Media {
 	public void setCoverUrl(String coverUrl) {
 		this.coverUrl = coverUrl;
 	}
-	public Integer getRealeaseYear() {
-		return realeaseYear;
+	public Integer getReleaseYear() {
+		return releaseYear;
 	}
-	public void setRealeaseYear(Integer realeaseYear) {
-		this.realeaseYear = realeaseYear;
+	public void setReleaseYear(Integer releaseYear) {
+		this.releaseYear = releaseYear;
 	}
 	public String getStyles() {
 		return styles;

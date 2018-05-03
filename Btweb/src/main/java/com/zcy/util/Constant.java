@@ -19,7 +19,10 @@ public class Constant {
 	public final static int SHOWCOLNUM = 2;
 	//展示列数
 	public final static int SHOWROWNUM = 5;
-	
+
 	//根据条件查询之后，每页展示的数量
 	public final static int CONDITIONMEDIAPAGESIZE = 30;
+	
+	//根据模糊查询之后，每页展示的数量
+	public final static int FUZZYMEDIAPAGESIZE = 6;
 }

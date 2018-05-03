@@ -21,7 +21,7 @@
 	
 		$(document).ready(function(){
 			<%-- 悬浮展示 --%>
-			$("[data-toggle='tooltip']").tooltip();
+			/* $("[data-toggle='tooltip']").tooltip(); */
 			
 			<%-- 点击切换影视类型时，设置对应的按键class --%>
 	/* 			$("#changeMediaTypeUl").children("li").on("click",function(){
@@ -72,7 +72,7 @@
 </head>
 <body>
 	<%-- 影视展示  --%>
-	<div id="showMediaDiv" style="border:solid blue;background-color:rgb(241, 242, 243);" align="center">
+	<div id="showMediaDiv" style="background-color:rgb(241, 242, 243);" align="center">
 		<table id="initMovieTable" class="initMeiaTable">
 			<thead>
 				<tr>

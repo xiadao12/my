@@ -18,7 +18,7 @@ function showMediaTable($table,mediatData)
 						+"</div>"
 					+"</a>"
 					+"<div style='width:177px;white-space:nowrap;text-overflow:ellipsis;word-break:break-all;overflow:hidden;'>"
-						+"<label>"+mediatData[i].realeaseYear+"</label>"
+						+"<label>"+mediatData[i].releaseYear+"</label>"
 						+"<label>"+mediatData[i].area+"</label>"
 						+"<label>"+mediatData[i].styles+"</label>"
 					+"</div>"

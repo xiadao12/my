@@ -44,7 +44,7 @@ public class GetMovieHtmlUnit {
 		movie.setLanguage("英语");
 		movie.setMainActors("json,xihua");
 		movie.setPhotoUrl("http://ddlld.com");
-		movie.setRealeaseYear(1992);
+		movie.setReleaseYear(1992);
 		movie.setStory("故事很长，刺客出胜利");
 		movie.setTypes("戏剧");
 		

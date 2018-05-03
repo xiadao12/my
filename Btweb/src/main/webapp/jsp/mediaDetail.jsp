@@ -42,7 +42,7 @@
 		$("#MediaNameLabel").append(media.name);
 		$("#styleLabel").append(media.styles);
 		$("#areaLabel").append(media.area);
-		$("#realeaseYearLabel").append(media.realeaseYear);
+		$("#releaseYearLabel").append(media.releaseYear);
 		$("#languageLabel").append(media.language);
 		$("#mainActorLabel").append(media.mainActors);
 		$("#storyDiv").append(media.story);
@@ -118,7 +118,7 @@
 					<label id="languageLabel"></label>
 				</div><div>
 					<label>上映时间：</dt>
-					<label id="realeaseYearLabel"></label>
+					<label id="releaseYearLabel"></label>
 				</div>
 				<div>
 					<label>主演：</dt>

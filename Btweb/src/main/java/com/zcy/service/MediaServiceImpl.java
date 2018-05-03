@@ -45,11 +45,11 @@ public class MediaServiceImpl implements MediaService{
 		return allMediaMap;
 	}
 
-	public Map getMediaByCondition(int pageNum,String mediaType, String style, int realeaseYear, String area,
+	public Map getMediaByCondition(int pageNum,String mediaType, String style, int releaseYear, String area,
 			String language) {
 		
-		List<Media> mediaData = mediaDao.getMediaByCondition((pageNum-1)*Constant.CONDITIONMEDIAPAGESIZE,Constant.CONDITIONMEDIAPAGESIZE ,mediaType, style, realeaseYear, area, language);
-		int totle = mediaDao.getMediaByConditionTotle(mediaType, style, realeaseYear, area, language);
+		List<Media> mediaData = mediaDao.getMediaByCondition((pageNum-1)*Constant.CONDITIONMEDIAPAGESIZE,Constant.CONDITIONMEDIAPAGESIZE ,mediaType, style, releaseYear, area, language);
+		int totle = mediaDao.getMediaByConditionTotle(mediaType, style, releaseYear, area, language);
 		Map mediaByConditionMap = new HashMap();
 		mediaByConditionMap.put("pageCount", totle/Constant.CONDITIONMEDIAPAGESIZE+1);
 		mediaByConditionMap.put("mediaData", mediaData);
@@ -62,6 +62,16 @@ public class MediaServiceImpl implements MediaService{
 		Map map = new HashMap();
 		map.put("media", media);
 		map.put("mediaUrlList", mediaUrlList);
+		return map;
+	}
+
+	public Map getMediaByFuzzy(String searchValue,int pageNum) {
+		List<Media> mediaList = mediaDao.getMediaByFuzzy(searchValue,(pageNum-1)*Constant.FUZZYMEDIAPAGESIZE,Constant.FUZZYMEDIAPAGESIZE);
+		int totle = mediaDao.getMediaByFuzzyTotle(searchValue);
+		
+		Map map = new HashMap();
+		map.put("mediaList", mediaList);
+		map.put("pageCount", totle/Constant.FUZZYMEDIAPAGESIZE+1);
 		return map;
 	}
 }

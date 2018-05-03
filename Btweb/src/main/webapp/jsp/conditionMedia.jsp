@@ -70,9 +70,9 @@
 		}else if(ddTitle == "styleTitle")
 		{
 			$("#styleSpan").text(choosedValue);
-		}else if(ddTitle == "realeaseYearTitle")
+		}else if(ddTitle == "releaseYearTitle")
 		{
-			$("#realeaseYearSpan").text(choosedValue);
+			$("#releaseYearSpan").text(choosedValue);
 		}else if(ddTitle == "areaTitle")
 		{
 			$("#areaSpan").text(choosedValue);
@@ -96,7 +96,7 @@
 	function searchByCondition($conditionMediaTable,pageNum,isResetTurnPage){
 		var mediaTypeName = $("#mediaTypeSpan").text();
 		var style = $("#styleSpan").text();
-		var realeaseYearString = $("#realeaseYearSpan").text();
+		var releaseYearString = $("#releaseYearSpan").text();
 		var area = $("#areaSpan").text();
 		var language = $("#languageSpan").text();
 		
@@ -107,7 +107,7 @@
 			data:{
 				"mediaTypeName":mediaTypeName,
 				"style":style,
-				"realeaseYearString":realeaseYearString,
+				"releaseYearString":releaseYearString,
 				"area":area,
 				"language":language,
 				"pageNumString":pageNum
@@ -178,7 +178,7 @@
 			<label style="cursor:pointer;">脱口秀</label>
 		</dd>
 		<dt style="float:left;">年代：</dt>
-		<dd title="realeaseYearTitle">
+		<dd title="releaseYearTitle">
 			<label style="cursor:pointer;" class="conditionLabelClick">全部</label>
 			<label style="cursor:pointer;">2018</label>
 			<label style="cursor:pointer;">2017</label>
@@ -228,7 +228,7 @@
 			<%-- 电影分类--%>
 			<span id="styleSpan" style="float:left;margin-left:20px"></span>
 			<%-- 电影年代 --%>
-			<span id="realeaseYearSpan" style="float:left;margin-left:20px"></span>
+			<span id="releaseYearSpan" style="float:left;margin-left:20px"></span>
 			<%-- 地区 --%>
 			<span id="areaSpan" style="float:left;margin-left:20px"></span>
 			<%-- 语言 --%>
@@ -239,13 +239,6 @@
 		<dd>
 			<table id="conditionMediaTable"></table>
 			<ul class="pagination" id="conditionMediaTurnPageUl">
-<!-- 			    <li><a href="#" title="1">&laquo;</a></li>
-			    <li><a href="#" title="1">1</a></li>
-			    <li><a href="#" title="1">2</a></li>
-			    <li><a href="#" title="1">3</a></li>
-			    <li><a href="#" title="1">4</a></li>
-			    <li><a href="#" title="1">5</a></li>
-			    <li><a href="#">&raquo;</a></li> -->
 			</ul>
 		</dd>
 	</dl>
