@@ -4,7 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style type="text/css">
+	.navigateMeiaType{
+		/* bakcground-color:rgba(255, 255, 255, 0.24); */
+		background-color:rgba(255, 255, 255, 0.24);
+		border-radius:7px;
+	}
+</style>
 <script type="text/javascript">
+	<%-- 移动鼠标切换影视类型时，设置对应的按键class --%>
+	$(function(){
+		$("#navigateChoosMediaTypeDiv > span").on("mouseover",function(){
+			$(this).addClass("navigateMeiaType");
+		}).on("mouseout",function(){
+			$(this).removeClass("navigateMeiaType");
+		});
+	});
+
 	function redirectSearchResultJsp()
 	{
 		var searchValue = $.trim($("#searchValueInput").val());
@@ -29,11 +46,19 @@
 			</div>						
 		</div>
 		
-		<div align="center" style="font-size:20px;">
-			<a href="${pageContext.request.contextPath}/index.jsp" style="margin-left:2%;color:white;">首页</a>
-			<a href="${pageContext.request.contextPath}/jsp/conditionMedia.jsp?mediaType=电影" style="margin-left:5%;color:white;">电影</a>
-			<a href="${pageContext.request.contextPath}/jsp/conditionMedia.jsp?mediaType=电视剧" style="margin-left:5%;color:white;">电视剧</a>
-			<a href="${pageContext.request.contextPath}/jsp/conditionMedia.jsp?mediaType=动漫" style="margin-left:5%;color:white;">动漫</a>
+		<div id="navigateChoosMediaTypeDiv" align="center" style="font-size:20px;">
+			<span style="width:5%;display:inline-block">
+				<a href="${pageContext.request.contextPath}/index.jsp" style="color:white;text-decoration:none;">首页</a>
+			</span>
+			<span style="width:5%;display:inline-block;margin-left:2%;">
+				<a href="${pageContext.request.contextPath}/jsp/conditionMedia.jsp?mediaType=电影" style="color:white;text-decoration:none;">电影</a>
+			</span>
+			<span style="width:5%;display:inline-block;margin-left:2%;">
+				<a href="${pageContext.request.contextPath}/jsp/conditionMedia.jsp?mediaType=电视剧" style="color:white;text-decoration:none;">电视剧</a>
+			</span>
+			<span style="width:5%;display:inline-block;margin-left:2%;">
+				<a href="${pageContext.request.contextPath}/jsp/conditionMedia.jsp?mediaType=动漫" style="color:white;text-decoration:none;">动漫</a>
+			</span>
 		</div>
 	</div>
 </body>

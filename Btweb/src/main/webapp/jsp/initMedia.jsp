@@ -11,7 +11,6 @@
 	<style type="text/css">
 		.initMeiaTable{
 			background-color:white;
-			/* visibility:hidden; */
 			border-spacing:10px 10px;
 			border-collapse:separate;
 		}
@@ -23,20 +22,17 @@
 			<%-- 悬浮展示 --%>
 			/* $("[data-toggle='tooltip']").tooltip(); */
 			
-			<%-- 点击切换影视类型时，设置对应的按键class --%>
-	/* 			$("#changeMediaTypeUl").children("li").on("click",function(){
-				$(this).addClass("active");
-				$(this).siblings().removeClass("active");
-			}); */
-			
 			<%-- 电影电视剧动漫各搜索十部 --%>
 			$.ajax({
 				type:"post",
 				url:"initMeida.do",
 				dataType:"json",
 				success:function(data){
-					//初始化数据
-					initMedia(data);
+					if(data != null)
+					{
+						//初始化数据
+						initMedia(data);
+					}
 				},
 				error:function(data){
 					//alert("获取数据错误");
@@ -51,10 +47,20 @@
 			var tvData = data.tv;
 			var animationData = data.animation;
 	
-			setInitMediaTable("initMovieTable",movieData);
-			setInitMediaTable("initTvTable",tvData);
-			setInitMediaTable("initAnimationTable",animationData);
+			if(movieData != null)
+			{
+				setInitMediaTable("initMovieTable",movieData);
+			}
+			if(tvData != null)
+			{
+				setInitMediaTable("initTvTable",tvData);
+			}
+			if(animationData != null)
+			{
+				setInitMediaTable("initAnimationTable",animationData);
+			}
 			
+			$("#showMediaDiv").css("visibility","visible");
 		}
 	
 		<%-- 具体的将初始化media的table赋值--%>
@@ -72,10 +78,10 @@
 </head>
 <body>
 	<%-- 影视展示  --%>
-	<div id="showMediaDiv" style="background-color:rgb(241, 242, 243);" align="center">
+	<div id="showMediaDiv" style="background-color:rgb(241, 242, 243);visibility:hidden;" align="center">
 		<table id="initMovieTable" class="initMeiaTable">
 			<thead>
-				<tr>
+				<tr >
 					<td colspan="5">电影资源</td>
 				</tr>
 			</thead>

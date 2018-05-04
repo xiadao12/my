@@ -74,12 +74,12 @@
 							var nameurlList = urlnameAndUrl.split(",");
 							if(nameurlList[0] != null)
 							{
-								html = html + "<div>"+nameurlList[0]+"</div>";
+								html = html + "<div><label style='margin-left:40px;'>"+nameurlList[0]+"</label></div>";
 							}
 							
 							if(nameurlList[1] != null)
 							{
-								html = html + "<div><a href='"+nameurlList[1]+"'>"+nameurlList[1]+"</a></div>";
+								html = html + "<div><a style='margin-left:40px;' href='"+nameurlList[1]+"'>"+nameurlList[1]+"</a></div>";
 							}
 							html = html + "</div>";
 						}
@@ -96,42 +96,50 @@
 </head>
 <body>
 	<jsp:include page="/jsp/navigate.jsp" flush="true"/>
-	<div>
-		<div>
-			<span style="float:left">
-				<img id="mediaCoverImg" style="width:233px;height:340px;"></img>
-			</span>
-			<span style="width:30%;">
-				<div>
-					<label id="MediaNameLabel"></label>
-				</div>
-				<div>
-					<label>类型：</label>
-					<label id="styleLabel"></label>
-				</div>
-				<div>
-					<label>地区：</label>
-					<label id="areaLabel"></label>
-				</div>
-				<div>
-					<label>语言：</dt>
-					<label id="languageLabel"></label>
-				</div><div>
-					<label>上映时间：</dt>
-					<label id="releaseYearLabel"></label>
-				</div>
-				<div>
-					<label>主演：</dt>
-					<label id="mainActorLabel"></label>
-				</div>
-				<div>
-					<label>剧情：</dt>
-					<div id="storyDiv" Style="overflow-y:auto; overflow-x:auto;height:20%;width:500px;"></div>
-				</div>
-			</span>
-		</div>
-		<div id="showUrlDiv">
-			
+	<div align="center">
+		<div style="width:60%;">
+			<table>
+				<tr>
+					<td style="width:233px;height:340px;">
+						<img id="mediaCoverImg" style="width:100%;height:100%;"></img>
+					</td>
+					<td style="height:340px;width:500px;">
+						<div>
+							<label id="MediaNameLabel"></label>
+						</div>
+						<div>
+							<label>类型：</label>
+							<label id="styleLabel"></label>
+						</div>
+						<div>
+							<label>地区：</label>
+							<label id="areaLabel"></label>
+						</div>
+						<div>
+							<label>语言：</dt>
+							<label id="languageLabel"></label>
+						</div>
+						<div>
+							<label>上映时间：</dt>
+							<label id="releaseYearLabel"></label>
+						</div>
+						<div>
+							<label>主演：</dt>
+							<label id="mainActorLabel"></label>
+						</div>
+						<div style="">
+							<label>剧情：</dt>
+							<div id="storyDiv" style="overflow-y:auto;overflow-x:auto;height:60px;"></div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<br/><br/>
+						<div id="showUrlDiv" align="left"></div>
+					</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 </body>

@@ -51,13 +51,18 @@
 				{
 					html = html 
 					+ "<tr>"
-						+"<td><a href='"+getPath()+"/jsp/mediaDetail.jsp?mediaId="+media.id+"'><img src="+media.coverUrl+"></img></a><td>"
-						+"<td>"
+						+"<td style='width:177px;height:250px;'>"
+							+"<a href='"+getPath()+"/jsp/mediaDetail.jsp?mediaId="+media.id+"'>"
+								+"<img style='width:100%;height:100%;' src="+media.coverUrl+"/>"
+							+"</a>"
+						+"</td>"
+						+"<td style='height:250px;' valign='top'>"
 							+"<div>名称：<a href='"+getPath()+"/jsp/mediaDetail.jsp?mediaId="+media.id+"'>"+media.name+"</a></div>"
 							+"<div>上映时间："+media.releaseYear+"</div>"
 							+"<div>地区："+media.area+"</div>"
 							+"<div>类型："+media.styles+"</div>"
-							+"<div>剧情："+media.story+"</div>"
+							+"<div>剧情：</div>"
+							+"<div style='overflow-y:auto; overflow-x:auto;height:30%;width:500px;'>"+media.story+"</div>"
 						+"</td>";
 					+"</tr>";
 				}
@@ -75,10 +80,12 @@
 </head>
 <body>
 	<jsp:include page="/jsp/navigate.jsp" flush="true"/>
-	<div>
-		<table id="fuzzyMediaTable"></table>
-		<ul class="pagination" id="fuzzyMediaTurnPageUl">
-		</ul>
+	<div align="center">
+		<div style="width:55%;">
+			<table id="fuzzyMediaTable"></table>
+			<ul class="pagination" id="fuzzyMediaTurnPageUl">
+			</ul>
+		</div>
 	</div>
 </body>
 </html>
