@@ -6,7 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/setTurnPage.js"></script>
+<%-- 分页插件样式 --%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/plug/paging/css/paging.css"> 
+<%-- 分页插件 --%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/plug/paging/js/paging.js"></script>
+<%-- 获取详细信息的html --%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/getDetailMediaInfoHtml.js"></script>
 <script type="text/javascript">
 	var searchValue = "";
 	$(function(){
@@ -15,7 +20,7 @@
 		setSearchFuzzyMediaAndTurnPage(1,true);
 	});
 	
-	function setSearchFuzzyMediaAndTurnPage(pageNum,isResetTurnPage)
+	function setSearchFuzzyMediaAndTurnPage(pageNum,ifReloadPage)
 	{
 		$("#fuzzyMediaTable").empty();
 		$.ajax({
@@ -30,7 +35,16 @@
 				if(data != null)
 				{
 					setSearchFuzzyMedia(data.mediaList);
-					setSearchFuzzyTurnPage(isResetTurnPage,data.pageCount);
+					if(ifReloadPage)
+					{
+						<%-- 分页 --%>
+						$("#page").paging({
+							totalPage: data.pageCount,
+							callback: function(num) {
+								setSearchFuzzyMediaAndTurnPage(num,false);
+							}
+						})
+					}
 				}
 			},
 			error:function(){
@@ -49,33 +63,12 @@
 				var media = mediaList[i];
 				if(media != null)
 				{
-					html = html 
-					+ "<tr>"
-						+"<td style='width:177px;height:250px;'>"
-							+"<a href='"+getPath()+"/jsp/mediaDetail.jsp?mediaId="+media.id+"'>"
-								+"<img style='width:100%;height:100%;' src="+media.coverUrl+"/>"
-							+"</a>"
-						+"</td>"
-						+"<td style='height:250px;' valign='top'>"
-							+"<div>名称：<a href='"+getPath()+"/jsp/mediaDetail.jsp?mediaId="+media.id+"'>"+media.name+"</a></div>"
-							+"<div>上映时间："+media.releaseYear+"</div>"
-							+"<div>地区："+media.area+"</div>"
-							+"<div>类型："+media.styles+"</div>"
-							+"<div>剧情：</div>"
-							+"<div style='overflow-y:auto; overflow-x:auto;height:30%;width:500px;'>"+media.story+"</div>"
-						+"</td>";
-					+"</tr>";
+					html = html + getDetailMediaInfoHtml(media,"searchResult");
 				}
 			}
 		}
 		$("#fuzzyMediaTable").append(html);
 	}
-	
-	function setSearchFuzzyTurnPage(isResetTurnPage,pageCount)
-	{
-		setTurnPage(isResetTurnPage,$("#fuzzyMediaTurnPageUl"),pageCount,setSearchFuzzyMediaAndTurnPage);
-	}
-	
 </script>
 </head>
 <body>
@@ -83,8 +76,7 @@
 	<div align="center">
 		<div style="width:55%;">
 			<table id="fuzzyMediaTable"></table>
-			<ul class="pagination" id="fuzzyMediaTurnPageUl">
-			</ul>
+			<div id="page" class="page_div"></div>
 		</div>
 	</div>
 </body>

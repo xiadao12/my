@@ -33,21 +33,20 @@
 </script>
 </head>
 <body>
-	<div style="background-image:linear-gradient(to right, rgb(18, 120, 246), rgb(0, 180, 170));">
+	<div>
 		<%--  网站图标以及搜索框   --%>
-		<div align="center" style="width:100%;height:6%;">
-			<div style="margin-top:0.6%;">
-				<span><label style="font-size:20px;">影视库</label></span>
-				<%-- <img src="${pageContext.request.contextPath}/img/logo.jpg" style="width:4%;"/> --%>
-				<span style="display:inline-block;width:40%;">
-						<input type="text" id="searchValueInput" style="width:80%;" onkeypress="if(event.keyCode==13) {searchButton.click();return false;}"/>
-						<input type="button" id="searchButton" value="搜索" onclick="redirectSearchResultJsp()"/>
-				</span>
-			</div>						
+		<div align="center" style="width:100%;height:10%;">
+			<span style="display:inline-block">
+				<label style="font-size:35px;">影视库</label>
+			</span>
+			<span style="margin-top:0.5%;display:inline-block;width:40%;">
+					<input type="text" id="searchValueInput" style="width:60%;height:40%;" onkeypress="if(event.keyCode==13) {searchButton.click();return false;}"/>
+					<input type="button" id="searchButton" style="height:40%;" value="搜索" onclick="redirectSearchResultJsp()"/>
+			</span>
 		</div>
 		
-		<div id="navigateChoosMediaTypeDiv" align="center" style="font-size:20px;">
-			<span style="width:5%;display:inline-block">
+		<div id="navigateChoosMediaTypeDiv" align="center" style="font-size:20px;height:5%;background-image:linear-gradient(to right, rgb(18, 120, 246), rgb(0, 180, 170));">
+			<span style="margin-top:0.5%;width:5%;display:inline-block">
 				<a href="${pageContext.request.contextPath}/index.jsp" style="color:white;text-decoration:none;">首页</a>
 			</span>
 			<span style="width:5%;display:inline-block;margin-left:2%;">

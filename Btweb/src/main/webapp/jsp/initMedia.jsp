@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<script type="text/javascript" src="js/showMediaTable.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/showMediaTable.js"></script>
 	
 	<style type="text/css">
 		.initMeiaTable{
@@ -82,21 +82,23 @@
 		<table id="initMovieTable" class="initMeiaTable">
 			<thead>
 				<tr >
-					<td colspan="5">电影资源</td>
+					<td colspan="5" style="font-size:20px;font-family:Microsoft YaHei">电影资源</td>
 				</tr>
 			</thead>
 		</table>
+		<br/>
 		<table id="initTvTable" class="initMeiaTable">
 			<thead>
 				<tr>
-					<td colspan="5">电视剧资源</td>
+					<td colspan="5" style="font-size:20px;font-family:Microsoft YaHei">电视剧资源</td>
 				<tr>
 			</thead>
 		</table>
+		<br/>
 		<table id="initAnimationTable" class="initMeiaTable">
 			<thead>
 				<tr>
-					<td colspan="5">动漫资源</td>
+					<td colspan="5" style="font-size:20px;font-family:Microsoft YaHei">动漫资源</td>
 				<tr>
 			</thead>
 		</table>

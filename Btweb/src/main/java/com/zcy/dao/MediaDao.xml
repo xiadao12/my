@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 根据条件查询 -->
 	<select id="getMediaByCondition" resultType="com.zcy.bean.Media">
 		select id,mediatype,name,coverurl,releaseyear,styles,area,language from t_media where 1=1
-		<if test="mediaType != null and mediaType != 0">
+		<if test="mediaType != null and mediaType != ''">
 			and mediaType = #{mediaType}
 		</if>
 		<if test="style != null and style != ''">
@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 根据条件查询获取个数 -->
 	<select id="getMediaByConditionTotle" resultType="java.lang.Integer">
 		select count(id) from t_media where 1=1
-		<if test="mediaType != null and mediaType != 0">
+		<if test="mediaType != null and mediaType != ''">
 			and mediaType = #{mediaType}
 		</if>
 		<if test="style != null and style != ''">
@@ -67,13 +67,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 模糊查询 or cast(releaseyear as varchar(20)) like "%"#{searchValue}"%" -->
 	<select id="getMediaByFuzzy" resultType="com.zcy.bean.Media">
-		select id,mediatype,name,coverurl,releaseyear,styles,area,language,story from t_media where 
+		select id,mediatype,name,coverurl,releaseyear,styles,area,language,story,mainactors from t_media where 
 			 name like "%"#{searchValue}"%" 
 			 or mediatype like "%"#{searchValue}"%" 
 			 or cast(releaseyear as char) like "%"#{searchValue}"%" 
 			 or styles like "%"#{searchValue}"%" 
 			 or area like "%"#{searchValue}"%" 
 			 or language like "%"#{searchValue}"%"
+			 or mainactors like "%"#{searchValue}"%"
 			 limit #{pageStartNum},#{pageSize}
 		
 	</select>
@@ -86,6 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			 or styles like "%"#{searchValue}"%" 
 			 or area like "%"#{searchValue}"%" 
 			 or language like "%"#{searchValue}"%"
+			 or mainactors like "%"#{searchValue}"%"
 	</select>
 	
 	

@@ -6,8 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<%-- 分页插件样式 --%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/plug/paging/css/paging.css"> 
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/showMediaTable.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/setTurnPage.js"></script>
+<%-- 分页插件 --%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/plug/paging/js/paging.js"></script>
 
 <style type="text/css">
 	.conditionLabelMouseover{
@@ -42,6 +46,8 @@
 			setConditionSpan(ddTitle,choosedValue);
 			<%--展示条件数据和分页栏--%>
 			setConditionMediaTableAndPage(1,true);
+			
+			
 		});
 		
 		//获取传参内容，然后展示对应的视频类型
@@ -59,6 +65,7 @@
 				$("#mediaTypeAnimationLabel").click();
 			}
 		}
+		
 	});
 	
 	<%-- 设置已选的搜索条件 --%>
@@ -83,18 +90,18 @@
 	}
 	
 	<%--展示条件数据和分页栏--%>
-	function setConditionMediaTableAndPage(pageNum,isResetTurnPage)
+	function setConditionMediaTableAndPage(pageNum,ifReloadPage)
 	{
 		$conditionMediaTable = $("#conditionMediaTable");
 		<%-- 清除之前的数据 --%>
 		$conditionMediaTable.empty();
 		<%-- 根据条件搜索 --%>
-		searchByCondition($conditionMediaTable,pageNum,isResetTurnPage);
+		searchByCondition($conditionMediaTable,pageNum,ifReloadPage);
 	}
 	
 	<%-- 根据条件搜索 --%>
-	function searchByCondition($conditionMediaTable,pageNum,isResetTurnPage){
-		var mediaTypeName = $("#mediaTypeSpan").text();
+	function searchByCondition($conditionMediaTable,pageNum,ifReloadPage){
+		var mediaType = $("#mediaTypeSpan").text();
 		var style = $("#styleSpan").text();
 		var releaseYearString = $("#releaseYearSpan").text();
 		var area = $("#areaSpan").text();
@@ -105,7 +112,7 @@
 			url:'${pageContext.request.contextPath}/searchConditionMedia.do',
 	        dataType:"json",
 			data:{
-				"mediaTypeName":mediaTypeName,
+				"mediaType":mediaType,
 				"style":style,
 				"releaseYearString":releaseYearString,
 				"area":area,
@@ -117,8 +124,20 @@
 				{
 					<%--根据查询结果展示--%>
 					showMediaTable($conditionMediaTable,data.mediaData);
-					<%--根据总数设置翻页--%>
-					setTurnPage(isResetTurnPage,$("#conditionMediaTurnPageUl"),data.pageCount,setConditionMediaTableAndPage);
+					if(ifReloadPage)
+					{
+						<%-- 分页 --%>
+						$("#page").paging({
+							totalPage: data.pageCount,
+							callback: function(num) {
+								setConditionMediaTableAndPage(num,false);
+							}
+						})
+					}
+				}
+				else
+				{
+					
 				}
 			},
 			error:function(){
@@ -128,7 +147,7 @@
 	}
 </script>
 </head>
-<body>
+<body style="overflow-y:scroll;">
 	<jsp:include page="/jsp/navigate.jsp" flush="true"/>
 	<div id="selectConditonDiv" align="center">
 		<div style="width:885px;" align="left">
@@ -163,9 +182,8 @@
 					<label style="cursor:pointer;">武侠</label>
 					<label style="cursor:pointer;">古装</label>
 					<label style="cursor:pointer;">谍战</label>
-				</span>
-				<div style="margin-left:9%;">
-					<label style="cursor:pointer;">传记</label>
+					</br>
+					<label style="cursor:pointer;margin-left:9%;">传记</label>
 					<label style="cursor:pointer;">历史</label>
 					<label style="cursor:pointer;">纪录</label>
 					<label style="cursor:pointer;">同性</label>
@@ -182,7 +200,7 @@
 					<label style="cursor:pointer;">真人秀</label>
 					<label style="cursor:pointer;">黑色电影</label>
 					<label style="cursor:pointer;">脱口秀</label>
-				</div>
+				</span>
 			</div>
 			<div>
 				<span>年代：</span>
@@ -248,11 +266,14 @@
 				<span id="languageSpan"></span>
 			</div>
 		</div>
+		
 		<div style="width:885px;">
-			<table id="conditionMediaTable"></table>
-			<ul class="pagination" id="conditionMediaTurnPageUl">
-			</ul>
+			<div align="left">
+				<table id="conditionMediaTable"></table>
+			</div>
+			<div id="page" class="page_div"></div>
 		</div>
+		
 	</div>
 </body>
 </html>

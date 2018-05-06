@@ -2,7 +2,7 @@
  * 设置翻页
  * isResetTurnPage是否需要清除翻页栏
  * 
- * */
+ * 
 function setTurnPage(isResetTurnPage,$pageUlId,pageCount,tranFunction)
 {
 	if(isResetTurnPage)
@@ -20,4 +20,4 @@ function setTurnPage(isResetTurnPage,$pageUlId,pageCount,tranFunction)
 function carryTranFunction(carryFunction,num,isResetTurnPage)
 {
 	carryFunction(num,isResetTurnPage);
-}
+}*/

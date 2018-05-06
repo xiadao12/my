@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/getDetailMediaInfoHtml.js"></script>
+
 <script type="text/javascript">
 	$(function(){
 		//获取传进来的电影id
@@ -23,7 +25,8 @@
 				//alert(data);
 				if(data != null)
 				{
-					showMediaDetail(data.media);
+					<%-- 展示详细信息 --%>
+					$("#detailMediaInfoDiv").append(getDetailMediaInfoHtml(data.media,"mediaDetail"));
 					showMediaUrlDetail(data.mediaUrlList);
 				}
 			},
@@ -34,19 +37,6 @@
 		});
 		
 	});
-
-	<%-- 展示详细信息 --%>
-	function showMediaDetail(media)
-	{
-		$("#mediaCoverImg").attr("src",media.coverUrl);
-		$("#MediaNameLabel").append(media.name);
-		$("#styleLabel").append(media.styles);
-		$("#areaLabel").append(media.area);
-		$("#releaseYearLabel").append(media.releaseYear);
-		$("#languageLabel").append(media.language);
-		$("#mainActorLabel").append(media.mainActors);
-		$("#storyDiv").append(media.story);
-	}
 
 	<%-- 展示下载路径 --%>
 	function showMediaUrlDetail(mediaUrlList)
@@ -60,26 +50,26 @@
 				<%--获取清晰度--%>
 				var resolution = mediaUrlList[i].resolution;
 				
-				html = html + "<div>"+resolution+"下载地址</div>"
+				html = html + "<div style='font-size:20px;margin-top:3%;'>"+resolution+"下载地址</div>"
 				
 				var urlList = mediaUrlList[i].urls.split(";");
 				if(null != urlList)
 				{
 					for(j=0;j<urlList.length;j++)
 					{
-						html = html + "<div>"
+						html = html + "<div style='margin-top:0.4%;border-bottom:1px solid #CFCFCF;'>"
 						var urlnameAndUrl = urlList[j];
 						if(null != urlnameAndUrl)
 						{
 							var nameurlList = urlnameAndUrl.split(",");
 							if(nameurlList[0] != null)
 							{
-								html = html + "<div><label style='margin-left:40px;'>"+nameurlList[0]+"</label></div>";
+								html = html + "<label style='margin-left:40px;'>"+nameurlList[0]+"</label>";
 							}
 							
 							if(nameurlList[1] != null)
 							{
-								html = html + "<div><a style='margin-left:40px;' href='"+nameurlList[1]+"'>"+nameurlList[1]+"</a></div>";
+								html = html + "<a style='margin-left:40px;float:right;' href='"+nameurlList[1]+"'>点击下载</a>";
 							}
 							html = html + "</div>";
 						}
@@ -97,49 +87,10 @@
 <body>
 	<jsp:include page="/jsp/navigate.jsp" flush="true"/>
 	<div align="center">
-		<div style="width:60%;">
-			<table>
-				<tr>
-					<td style="width:233px;height:340px;">
-						<img id="mediaCoverImg" style="width:100%;height:100%;"></img>
-					</td>
-					<td style="height:340px;width:500px;">
-						<div>
-							<label id="MediaNameLabel"></label>
-						</div>
-						<div>
-							<label>类型：</label>
-							<label id="styleLabel"></label>
-						</div>
-						<div>
-							<label>地区：</label>
-							<label id="areaLabel"></label>
-						</div>
-						<div>
-							<label>语言：</dt>
-							<label id="languageLabel"></label>
-						</div>
-						<div>
-							<label>上映时间：</dt>
-							<label id="releaseYearLabel"></label>
-						</div>
-						<div>
-							<label>主演：</dt>
-							<label id="mainActorLabel"></label>
-						</div>
-						<div style="">
-							<label>剧情：</dt>
-							<div id="storyDiv" style="overflow-y:auto;overflow-x:auto;height:60px;"></div>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<br/><br/>
-						<div id="showUrlDiv" align="left"></div>
-					</td>
-				</tr>
-			</table>
+		<div style="width:885px;">
+			<div id="detailMediaInfoDiv"></div>
+			<div id="showUrlDiv" align="left" style="margin-top:5%;"></div>
+		
 		</div>
 	</div>
 </body>
