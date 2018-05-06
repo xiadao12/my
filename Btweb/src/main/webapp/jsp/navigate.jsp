@@ -47,16 +47,16 @@
 		
 		<div id="navigateChoosMediaTypeDiv" align="center" style="font-size:20px;height:5%;background-image:linear-gradient(to right, rgb(18, 120, 246), rgb(0, 180, 170));">
 			<span style="margin-top:0.5%;width:5%;display:inline-block">
-				<a href="${pageContext.request.contextPath}/index.jsp" style="color:white;text-decoration:none;">首页</a>
+				<a href="javascript:window.location.href = getPath() + '/index.jsp'" style="color:white;text-decoration:none;">首页</a>
 			</span>
 			<span style="width:5%;display:inline-block;margin-left:2%;">
-				<a href="${pageContext.request.contextPath}/jsp/conditionMedia.jsp?mediaType=电影" style="color:white;text-decoration:none;">电影</a>
+				<a href="javascript:window.location.href = getPath() + '/jsp/conditionMedia.jsp?mediaType=' + encodeURI(encodeURI('电影'))" style="color:white;text-decoration:none;">电影</a>
 			</span>
 			<span style="width:5%;display:inline-block;margin-left:2%;">
-				<a href="${pageContext.request.contextPath}/jsp/conditionMedia.jsp?mediaType=电视剧" style="color:white;text-decoration:none;">电视剧</a>
+				<a href="javascript:window.location.href = getPath() + '/jsp/conditionMedia.jsp?mediaType=' + encodeURI(encodeURI('电视剧'))" style="color:white;text-decoration:none;">电视剧</a>
 			</span>
 			<span style="width:5%;display:inline-block;margin-left:2%;">
-				<a href="${pageContext.request.contextPath}/jsp/conditionMedia.jsp?mediaType=动漫" style="color:white;text-decoration:none;">动漫</a>
+				<a href="javascript:window.location.href = getPath() + '/jsp/conditionMedia.jsp?mediaType=' + encodeURI(encodeURI('动漫'))" style="color:white;text-decoration:none;">动漫</a>
 			</span>
 		</div>
 	</div>

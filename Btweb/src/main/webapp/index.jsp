@@ -6,11 +6,6 @@
 <html>
 <head>
 	<title>主页</title>
-	
-	<script type="text/javascript">
-		//alert(1);
-		//alert("${pageContext.request.contextPath}");
-	</script>
 </head>
 <body>
 	<jsp:include page="/jsp/navigate.jsp" flush="true"/>

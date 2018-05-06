@@ -51,7 +51,7 @@
 		});
 		
 		//获取传参内容，然后展示对应的视频类型
-		var reqMediaType = "<%=request.getParameter("mediaType")%>";
+		var reqMediaType = decodeURI(decodeURI("<%=request.getParameter("mediaType")%>"));
 		if(reqMediaType != null)
 		{
 			if(reqMediaType == "电影")
