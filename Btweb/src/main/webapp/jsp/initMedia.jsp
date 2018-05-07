@@ -60,7 +60,7 @@
 				setInitMediaTable("initAnimationTable",animationData);
 			}
 			
-			$("#showMediaDiv").css("visibility","visible");
+			$("#showMediaDiv").css("display","inline");
 		}
 	
 		<%-- 具体的将初始化media的table赋值--%>
@@ -78,7 +78,7 @@
 </head>
 <body>
 	<%-- 影视展示  --%>
-	<div id="showMediaDiv" style="background-color:rgb(241, 242, 243);visibility:hidden;" align="center">
+	<div id="showMediaDiv" style="background-color:rgb(241, 242, 243);display:none;" align="center">
 		<table id="initMovieTable" class="initMeiaTable">
 			<thead>
 				<tr >

@@ -15,7 +15,7 @@
 <script type="text/javascript">
 	var searchValue = "";
 	$(function(){
-		searchValue = "<%=request.getParameter("searchValue")%>";
+		searchValue = decodeURI(decodeURI("<%=request.getParameter("searchValue")%>"));
 		$("#searchValueInput").val(searchValue);
 		setSearchFuzzyMediaAndTurnPage(1,true);
 	});

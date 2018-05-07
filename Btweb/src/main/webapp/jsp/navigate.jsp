@@ -27,7 +27,7 @@
 		var searchValue = $.trim($("#searchValueInput").val());
 		if(searchValue != "")
 		{
-			window.location.href = getPath() + "/jsp/searchResult.jsp?searchValue="+searchValue;
+			window.location.href = getPath() + "/jsp/searchResult.jsp?searchValue="+encodeURI(encodeURI(searchValue));
 		}
 	}
 </script>
