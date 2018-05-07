@@ -5,3 +5,11 @@ function getPath(){
     var result = pathName.substr(0,index+1);
     return result;
  }
+
+function judgeIsNull(obj){
+	if(obj == null || obj == "")
+	{
+		return true;
+	}
+	return false;
+}

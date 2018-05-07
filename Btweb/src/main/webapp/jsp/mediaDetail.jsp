@@ -69,7 +69,9 @@
 							
 							if(nameurlList[1] != null)
 							{
-								html = html + "<a style='margin-left:40px;float:right;' href='"+nameurlList[1]+"'>点击下载</a>";
+								html = html + "<a style='margin-left:40px;float:right;' href='"+nameurlList[1]+"'>点击下载</a>"
+											+ "<a style='margin-left:40px;float:right;' href='javascript:void(0)' onclick='showUrlA(this)'>展示链接</a>"
+											+ "<a href='"+nameurlList[1]+"' class='showUrl' style='margin-left:40px;display:none;'>"+nameurlList[1]+"</a>";
 							}
 							html = html + "</div>";
 						}
@@ -78,6 +80,13 @@
 			}
 		}
 		$("#showUrlDiv").append(html);
+	}
+	
+	<%-- 展示url的超链接 --%>
+	function showUrlA(obj)
+	{
+		$(obj).parents().find("a.showUrl").css("display","none");
+		$(obj).siblings("a.showUrl").css("display","inline");
 	}
 	
 
@@ -90,7 +99,6 @@
 		<div style="width:885px;">
 			<div id="detailMediaInfoDiv"></div>
 			<div id="showUrlDiv" align="left" style="margin-top:5%;"></div>
-		
 		</div>
 	</div>
 </body>

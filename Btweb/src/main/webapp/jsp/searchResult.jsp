@@ -22,7 +22,10 @@
 	
 	function setSearchFuzzyMediaAndTurnPage(pageNum,ifReloadPage)
 	{
+		<%-- 清空展示搜索的数据 --%>
 		$("#fuzzyMediaTable").empty();
+		<%-- 清空空数据警告 --%>
+		$("#nullWaringDiv").empty();
 		$.ajax({
 			url:"${pageContext.request.contextPath}/searchByFuzzy.do",
 			type:"post",
@@ -34,16 +37,23 @@
 			success:function(data){
 				if(data != null)
 				{
-					setSearchFuzzyMedia(data.mediaList);
-					if(ifReloadPage)
+					if(judgeIsNull(data.mediaList))
 					{
-						<%-- 分页 --%>
-						$("#page").paging({
-							totalPage: data.pageCount,
-							callback: function(num) {
-								setSearchFuzzyMediaAndTurnPage(num,false);
-							}
-						})
+						$("#nullWaringDiv").append("没有相关数据");
+					}
+					else
+					{
+						setSearchFuzzyMedia(data.mediaList);
+						if(ifReloadPage)
+						{
+							<%-- 分页 --%>
+							$("#page").paging({
+								totalPage: data.pageCount,
+								callback: function(num) {
+									setSearchFuzzyMediaAndTurnPage(num,false);
+								}
+							})
+						}
 					}
 				}
 			},
@@ -76,6 +86,7 @@
 	<div align="center">
 		<div style="width:55%;">
 			<table id="fuzzyMediaTable"></table>
+			<div id="nullWaringDiv"></div>
 			<div id="page" class="page_div"></div>
 		</div>
 	</div>

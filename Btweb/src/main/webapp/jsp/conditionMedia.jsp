@@ -46,8 +46,6 @@
 			setConditionSpan(ddTitle,choosedValue);
 			<%--展示条件数据和分页栏--%>
 			setConditionMediaTableAndPage(1,true);
-			
-			
 		});
 		
 		//获取传参内容，然后展示对应的视频类型
@@ -101,6 +99,10 @@
 	
 	<%-- 根据条件搜索 --%>
 	function searchByCondition($conditionMediaTable,pageNum,ifReloadPage){
+		
+		<%--清空没有数据的警告--%>
+		$("#nullWaringDiv").empty();
+		
 		var mediaType = $("#mediaTypeSpan").text();
 		var style = $("#styleSpan").text();
 		var releaseYearString = $("#releaseYearSpan").text();
@@ -123,21 +125,24 @@
 				if(data != null)
 				{
 					<%--根据查询结果展示--%>
-					showMediaTable($conditionMediaTable,data.mediaData);
-					if(ifReloadPage)
+					if(judgeIsNull(data.mediaData))
 					{
-						<%-- 分页 --%>
-						$("#page").paging({
-							totalPage: data.pageCount,
-							callback: function(num) {
-								setConditionMediaTableAndPage(num,false);
-							}
-						})
+						$("#nullWaringDiv").append("没有相关数据");
+						$("#page").empty();
+					}else
+					{
+						showMediaTable($conditionMediaTable,data.mediaData);
+						if(ifReloadPage)
+						{
+							<%-- 分页 --%>
+							$("#page").paging({
+								totalPage: data.pageCount,
+								callback: function(num) {
+									setConditionMediaTableAndPage(num,false);
+								}
+							})
+						}
 					}
-				}
-				else
-				{
-					
 				}
 			},
 			error:function(){
@@ -271,6 +276,7 @@
 			<div align="left">
 				<table id="conditionMediaTable"></table>
 			</div>
+			<div id="nullWaringDiv"></div>
 			<div id="page" class="page_div"></div>
 		</div>
 		
