@@ -1,24 +1,17 @@
 package com.zcy.util;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.logging.Logger;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.junit.Test;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
@@ -53,18 +46,19 @@ public class GetMovieHtmlUnit {
 	//@Test
 	public static void getMovie()
 	{
-		WebClient webClient = new WebClient(BrowserVersion.FIREFOX_52);//新建一个模拟谷歌Chrome浏览器的浏览器客户端对象
+		WebClient webClient = new WebClient(BrowserVersion.CHROME);//新建一个模拟谷歌Chrome浏览器的浏览器客户端对象
 
         webClient.getOptions().setThrowExceptionOnScriptError(false);//当JS执行出错的时候是否抛出异常, 这里选择不需要
         webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);//当HTTP的状态非200时是否抛出异常, 这里选择不需要
         webClient.getOptions().setActiveXNative(false);
         webClient.getOptions().setCssEnabled(false);//是否启用CSS, 因为不需要展现页面, 所以不需要启用
         webClient.getOptions().setJavaScriptEnabled(true); //很重要，启用JS
+        //webClient.getOptions().setUseInsecureSSL(true);
         webClient.setAjaxController(new NicelyResynchronizingAjaxController());//很重要，设置支持AJAX
 		
 		//起止页设置
-		int startMoviePage = 8810;
-		int endMoviePage = 12845;//12845
+		int startMoviePage = 11586;
+		int endMoviePage = 12941;//12941
 		
 		//循环获取网页数据
 		for(int i=startMoviePage;i<=endMoviePage;i++)
@@ -291,7 +285,17 @@ public class GetMovieHtmlUnit {
 							Elements movieUrlHashLiAElements = movieUrlHashLiElement.select("a");
 							
 							//获取连接名称
-							String urlNameTemp = movieUrlHashLiAElements.get(0).text().split("详情")[0].trim();
+							String urlNameTemp = "";
+							String urlNameAText = movieUrlHashLiAElements.get(0).text().trim();
+							//有可能存在链接名为空的情况，此种情况下urlNameAText只有“详情”两个字
+							if(Util.judgeIsNull(urlNameAText) || "详情".equals(urlNameAText))
+							{
+								urlNameTemp = movieUrlHashLiAElements.get(0).attr("title").trim();
+							}else
+							{
+								urlNameTemp = urlNameAText.split("详情")[0].trim();
+							}
+							
 							String urlStringTemp = movieUrlHashLiAElements.get(1).attr("href").trim();
 							nameUrlMap.put(urlNameTemp, urlStringTemp);
 						}
@@ -312,13 +316,17 @@ public class GetMovieHtmlUnit {
 				System.out.println("剧情:" + movieStory);
 				System.out.println("链接:" + resolutionUrlMap);
 				
+/*				if(1 == 1)
+				{
+					return;
+				}*/
 				
 				//链接并插入数据库
 				System.out.println("开始插入数据库");
 				//链接并插入数据库
 				
-				String mysqlDriver = "com.mysql.jdbc.Driver";
-				String mysqlUrl = "jdbc:mysql://127.0.0.1:3306/db_btweb";
+				String mysqlDriver = "com.mysql.cj.jdbc.Driver";
+				String mysqlUrl = "jdbc:mysql://127.0.0.1:3306/db_btweb?characterEncoding=utf8&useSSL=true&serverTimezone=Asia/Shanghai";
 				String mysqlUser = "root";
 				String mysqlPassword = "qweqwe";
 				

@@ -26,7 +26,7 @@ create table t_media(
 	styles varchar(50),			-- 类型
 	area varchar(20),			-- 地区
 	language varchar(20),		-- 语言
-	mainactors varchar(200),	-- 主演
+	mainactors varchar(500),	-- 主演
 	story text,					-- 剧情
 	updatedate timestamp not null default current_timestamp on update current_timestamp,		-- 添加时间
 	PRIMARY KEY (id)
@@ -54,7 +54,7 @@ create table t_media_temp(
 	styles varchar(50),			-- 类型
 	area varchar(20),			-- 地区
 	language varchar(20),		-- 语言
-	mainactors varchar(200),	-- 主演
+	mainactors varchar(500),	-- 主演
 	story text,					-- 剧情
 	updatedate timestamp not null default current_timestamp on update current_timestamp,		-- 添加时间
 	PRIMARY KEY (id)
