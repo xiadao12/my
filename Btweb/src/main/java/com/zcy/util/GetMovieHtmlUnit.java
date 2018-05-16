@@ -57,7 +57,7 @@ public class GetMovieHtmlUnit {
         webClient.setAjaxController(new NicelyResynchronizingAjaxController());//很重要，设置支持AJAX
 		
 		//起止页设置
-		int startMoviePage = 11586;
+		int startMoviePage = 12152;
 		int endMoviePage = 12941;//12941
 		
 		//循环获取网页数据
