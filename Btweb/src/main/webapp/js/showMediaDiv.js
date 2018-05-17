@@ -1,14 +1,10 @@
 /*展示视频列表*/
-function showMediaTable($table,mediatData)
+function showMediaDiv($div,mediatData)
 {
 	for(var i=0;i<mediatData.length;i++)
 	{
-		if(i%5==0)
-		{
-			$table.append("<tr style='margin-top:10px;'></tr>");
-		}
-		$table.children("tr").last().append(
-				"<td style='border:1px solid rgb(241, 242, 243);font-size:13px;'>"
+		$div.append(
+				"<div style='border:1px solid rgb(241, 242, 243);font-size:13px;margin-right:0.9%;margin-top:0.6%;'>"
 					+"<a href='"+getPath()+"/jsp/mediaDetail.jsp?mediaId="+mediatData[i].id+"' data-toggle='tooltip' title='"+mediatData[i].name+"'>"
 						+"<div style='width:177px;height:250px;'>"
 							+"<img style='width:100%;height:100%;' src='"+mediatData[i].coverUrl+"'></img>"
@@ -22,6 +18,7 @@ function showMediaTable($table,mediatData)
 						+"<label>"+mediatData[i].area+"</label>"
 						+"<label>"+mediatData[i].styles+"</label>"
 					+"</div>"
-			+	"</td>");
+				+"</div>"
+		);
 	}
 }

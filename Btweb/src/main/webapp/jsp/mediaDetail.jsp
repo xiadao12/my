@@ -26,7 +26,7 @@
 				if(data != null)
 				{
 					<%-- 展示详细信息 --%>
-					$("#detailMediaInfoDiv").append(getDetailMediaInfoHtml(data.media,"mediaDetail"));
+					$("#detailMediaInfoDiv").prepend(getDetailMediaInfoHtml(data.media,"mediaDetail"));
 					showMediaUrlDetail(data.mediaUrlList);
 				}
 			},
@@ -50,30 +50,39 @@
 				<%--获取清晰度--%>
 				var resolution = mediaUrlList[i].resolution;
 				
-				html = html + "<div style='font-size:20px;margin-top:3%;'>"+resolution+"下载地址</div>"
+				html = html + "<div class='row'><div class='col-12'>"+resolution+"下载地址</div></div>";
 				
 				var urlList = mediaUrlList[i].urls.split(";");
 				if(null != urlList)
 				{
 					for(j=0;j<urlList.length;j++)
 					{
-						html = html + "<div style='margin-top:0.4%;border-bottom:1px solid #CFCFCF;'>"
 						var urlnameAndUrl = urlList[j];
 						if(null != urlnameAndUrl)
 						{
+							html = html + "<div class='row'>"
+											+"<div class='col-9'>";
 							var nameurlList = urlnameAndUrl.split(",");
 							if(nameurlList[0] != null)
 							{
-								html = html + "<label style='margin-left:40px;'>"+nameurlList[0]+"</label>";
+								html = html + nameurlList[0];
 							}
+							html = html 	+"</div>"
+											+"<div class='col-3 text-right'>";
 							
 							if(nameurlList[1] != null)
 							{
-								html = html + "<a style='margin-left:40px;float:right;' href='"+nameurlList[1]+"'>点击下载</a>"
-											+ "<a style='margin-left:40px;float:right;' href='javascript:void(0)' onclick='showUrlA(this)'>展示链接</a>"
-											+ "<a href='"+nameurlList[1]+"' class='showUrl' style='margin-left:40px;display:none;'>"+nameurlList[1]+"</a>";
+								html = html		+ "<a href='"+nameurlList[1]+"'>点击下载</a>"
+												+ "<a href='javascript:void(0)' onclick='showUrlA(this)'>展示链接</a>";
 							}
-							html = html + "</div>";
+							html = html 	+"</div>"
+										+ "</div>";
+							
+							if(nameurlList[1] != null)
+							{
+								html = html		+ "<div class='row showUrl' style='display:none;'><a class='col-12' href='"+nameurlList[1]+"'>"+nameurlList[1]+"</a></div>";
+							}
+										
 						}
 					}
 				}
@@ -85,8 +94,8 @@
 	<%-- 展示url的超链接 --%>
 	function showUrlA(obj)
 	{
-		$(obj).parents().find("a.showUrl").css("display","none");
-		$(obj).siblings("a.showUrl").css("display","inline");
+		$(obj).parents().find("div.showUrl").css("display","none");
+		$(obj).parent().parent().next("div.showUrl:first").css("display","inline");
 	}
 	
 
@@ -95,11 +104,7 @@
 </head>
 <body>
 	<jsp:include page="/jsp/navigate.jsp" flush="true"/>
-	<div align="center">
-		<div style="width:885px;">
-			<div id="detailMediaInfoDiv"></div>
-			<div id="showUrlDiv" align="left" style="margin-top:5%;"></div>
-		</div>
-	</div>
+	<div id="detailMediaInfoDiv" class="container"></div>
+	<div id="showUrlDiv" class="container"></div>
 </body>
 </html>

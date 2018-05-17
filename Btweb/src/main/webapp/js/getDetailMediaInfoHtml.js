@@ -1,52 +1,60 @@
 function getDetailMediaInfoHtml(media,showHtml)
 {
-	var html = "<div style='height:250px;margin-top:1.5%;'>"
-				+ "<span style='width:177px;height:250px;float:left;'>";
+	var html = 	"<div class='row' style='margin-top:2%;'>";
+	
 	if(showHtml == "searchResult")
 	{
 		html = html+"<a href='"+getPath()+"/jsp/mediaDetail.jsp?mediaId="+media.id+"'>";
 	}
-	html = html 	+ "<img style='width:100%;height:100%;' src='"+media.coverUrl+"'></img>";
+	
+	html = html				+"<div class='col-lg-2 col-md-3'>"
+								+"<img style='width:177px;height:250px;' src='"+media.coverUrl+"'></img>"
+							+"</div>";
+	
 	if(showHtml == "searchResult")
 	{
 		html = html + "</a>";
-	}
-	
-	html = html	+ "</span>"
-				+ "<span style='width:700px;height:250px;text-align:left;'>"
-					+ "<div>";
+	}			
 					
+							
+	html = html				+"<div class='col-lg-9 col-md-9' style='margin-left:1.8%;'>"
+								+ "<div>";
 	if(showHtml == "searchResult")
 	{
-		html = html +	"<a href='"+getPath()+"/jsp/mediaDetail.jsp?mediaId="+media.id+"' style='margin-left:10px;font-size:20px;'>"+media.name+"</a>";
+		html = html			+"<a href='"+getPath()+"/jsp/mediaDetail.jsp?mediaId="+media.id+"' style='font-size:20px;text-decoration:none;'>";
 	}
-	else
+							
+	html = html							+ media.name;
+	if(showHtml == "searchResult")
 	{
-		html = html		+ "<label style='margin-left:10px;font-size:20px;'>"+media.name+"</label>";
+		html = html 		+ "</a>";
+	}									
+	html = html					+ "</div>"
+								+ "<div>"
+									+ "<label>类型："+media.styles+"</label>"
+								+ "</div>"
+								+ "<div>"
+									+ "<label>地区："+media.area+"</label>"
+								+ "</div>"
+								+ "<div>"
+									+ "<label>语言："+media.language+"</label>"
+								+ "</div>"
+								+ "<div>"
+									+ "<label>上映："+media.releaseYear+"</label>"
+								+ "</div>"
+								+ "<div>"
+									+ "<label>主演："+media.mainActors+"</label>"
+								+ "</div>"
+							+"</div>"
+						+"</div>";
+	
+	if(showHtml == "mediaDetail")
+	{
+		html = html +"<div class='row'><div class='col-12'>剧情介绍：</div></div>"
+					+"<div class='row'>"
+						+"<div class='col-12'>"+media.story+"</div>"
+					+"</div>";
 	}
-	
-	html = html		+ "</div>"
-					+ "<div>"
-						+ "<label style='margin-left:10px;'>类型："+media.styles+"</label>"
-					+ "</div>"
-					+ "<div>"
-						+ "<label style='margin-left:10px;'>地区："+media.area+"</label>"
-					+ "</div>"
-					+ "<div>"
-						+ "<label style='margin-left:10px;'>语言："+media.language+"</dt>"
-					+ "</div>"
-					+ "<div>"
-						+ "<label style='margin-left:10px;'>上映："+media.releaseYear+"</dt>"
-					+ "</div>"
-					+ "<div style='line-height:24px;white-space:nowrap;text-overflow:ellipsis;word-break:break-all;overflow:hidden;'>"
-						+ "<label style='margin-left:10px;'>主演："+media.mainActors+"</dt>"
-					+ "</div>"
-					+ "<div>"
-						+ "<label style='margin-left:10px;'>剧情：</dt>"
-						+ "<div style='margin-left:20px;overflow-y:auto;overflow-x:auto;height:90px;'>"+media.story+"</div>"
-					+ "</div>"
-				+ "</span>"
-			+ "</div>";
-	
+					
 	return html;
 }

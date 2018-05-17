@@ -18,7 +18,7 @@ public class Constant {
 	//展示行数
 	public final static int SHOWCOLNUM = 2;
 	//展示列数
-	public final static int SHOWROWNUM = 5;
+	public final static int SHOWROWNUM = 6;
 
 	//根据条件查询之后，每页展示的数量
 	public final static int CONDITIONMEDIAPAGESIZE = 30;
