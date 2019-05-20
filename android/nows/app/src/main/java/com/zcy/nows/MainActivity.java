@@ -1,8 +1,7 @@
 package com.zcy.nows;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -23,14 +22,34 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
+
+        View jokeContentView = findViewById(R.id.jokeContent);
+        jokeContentView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder  = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("确认" ) ;
+                builder.setMessage("这是一个简单消息框" ) ;
+                builder.setPositiveButton("是" ,  null );
+                builder.show();
+            }
+        });
+        
+/*        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                AlertDialog.Builder builder  = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("确认" ) ;
+                builder.setMessage("这是一个简单消息框" ) ;
+                builder.setPositiveButton("是" ,  null );
+                builder.show();
+
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
