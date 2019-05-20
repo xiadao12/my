@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -23,15 +24,12 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        View jokeContentView = findViewById(R.id.jokeContent);
+        final TextView jokeContentView = findViewById(R.id.jokeContent);
         jokeContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder  = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("确认" ) ;
-                builder.setMessage("这是一个简单消息框" ) ;
-                builder.setPositiveButton("是" ,  null );
-                builder.show();
+                JokeContent jokeContent = new JokeContent();
+                jokeContentView.setText(jokeContent.getNextJokeContent());
             }
         });
         
