@@ -1,3 +1,6 @@
+//网站基础颜色
+var baseColor = "#1C86EE";
+
 //获取项目名称路径  /Btweb
 function getPath(){
 	var pathName = document.location.pathname;

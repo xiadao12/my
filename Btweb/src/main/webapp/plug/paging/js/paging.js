@@ -32,7 +32,7 @@
 				if(current < 5) {
 					for(var i = 1; i < 6; i++) {
 						if(current == i) {
-							content += "<a class='current'>" + i + "</a>";
+							content += "<a class='pageCurrent'>" + i + "</a>";
 						} else {
 							content += "<a>" + i + "</a>";
 						}
@@ -44,7 +44,7 @@
 					if(current < total - 3) {
 						for(var i = current - 2; i < current + 3; i++) {
 							if(current == i) {
-								content += "<a class='current'>" + i + "</a>";
+								content += "<a class='pageCurrent'>" + i + "</a>";
 							} else {
 								content += "<a>" + i + "</a>";
 							}
@@ -57,7 +57,7 @@
 						content += ". . .";
 						for(var i = total - 4; i < total + 1; i++) {
 							if(current == i) {
-								content += "<a class='current'>" + i + "</a>";
+								content += "<a class='pageCurrent'>" + i + "</a>";
 							} else {
 								content += "<a>" + i + "</a>";
 							}
@@ -68,7 +68,7 @@
 			} else {
 				for(var i = 1; i < total + 1; i++) {
 					if(current == i) {
-						content += "<a class='current'>" + i + "</a>";
+						content += "<a class='pageCurrent'>" + i + "</a>";
 					} else {
 						content += "<a>" + i + "</a>";
 					}

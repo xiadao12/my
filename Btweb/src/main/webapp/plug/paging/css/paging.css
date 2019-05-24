@@ -43,7 +43,7 @@
 	border: 1px solid #0073A9!important;
 }
 
-.page_div .current {
+.page_div .pageCurrent {
 	background-color: #0073A9;
 	border-color: #0073A9;
 	color: #FFFFFF;

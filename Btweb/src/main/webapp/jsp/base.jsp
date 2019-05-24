@@ -9,11 +9,15 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css"></link>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/plug/bootstrap-4.1.0-dist/css/bootstrap.min.css"></link>
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/plug/jquery-3.3.1/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/plug/bootstrap-4.1.0-dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/plug/paging/js/paging.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/base.js"></script>
+	
 </head>
 <body>
 </body>

@@ -23,7 +23,7 @@
 	function setSearchFuzzyMediaAndTurnPage(pageNum,ifReloadPage)
 	{
 		<%-- 清空展示搜索的数据 --%>
-		$("#fuzzyMediaTable").empty();
+		$("#fuzzyMediaDiv").empty();
 		<%-- 清空空数据警告 --%>
 		$("#nullWaringDiv").empty();
 		$.ajax({
@@ -39,7 +39,7 @@
 				{
 					if(judgeIsNull(data.mediaList))
 					{
-						$("#nullWaringDiv").append("没有相关数据");
+						$("#nullWaringDiv").append("暂无相关数据");
 					}
 					else
 					{
@@ -77,17 +77,20 @@
 				}
 			}
 		}
-		$("#fuzzyMediaTable").append(html);
+		$("#fuzzyMediaDiv").prepend(html);
 	}
 </script>
 </head>
 <body>
 	<jsp:include page="/jsp/navigate.jsp" flush="true"/>
-	<div align="center">
-		<div style="width:55%;">
-			<table id="fuzzyMediaTable"></table>
-			<div id="nullWaringDiv"></div>
-			<div id="page" class="page_div"></div>
+	<div id="fuzzyMediaDiv" class="container">
+	</div>
+	<div class="container">
+		<div class="row text-center" style="margin-top:50px;">
+			<div id="nullWaringDiv" class="col-12 nullWaring"></div>
+		</div>
+		<div class="row text-center" style="margin-bottom:20px;">
+			<div id="page" class="page_div col-12"></div>
 		</div>
 	</div>
 </body>

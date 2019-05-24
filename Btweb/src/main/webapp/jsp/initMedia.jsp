@@ -6,13 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/showMediaTable.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/showMediaDiv.js"></script>
 	
 	<style type="text/css">
-		.initMeiaTable{
-			background-color:white;
-			border-spacing:10px 10px;
-			border-collapse:separate;
+		.initMediaTypeDiv{
+			font-size:20px;
+			font-family:Microsoft YaHei;
+			margin-top:2.5%;
+			margin-bottom:1%;
 		}
 	</style>
 	
@@ -35,7 +36,7 @@
 					}
 				},
 				error:function(data){
-					//alert("获取数据错误");
+					alert("获取数据错误");
 				}
 			});
 		});
@@ -49,27 +50,28 @@
 	
 			if(movieData != null)
 			{
-				setInitMediaTable("initMovieTable",movieData);
+				setInitMediaDiv("initMovieDiv",movieData);
 			}
 			if(tvData != null)
 			{
-				setInitMediaTable("initTvTable",tvData);
+				setInitMediaDiv("initTvDiv",tvData);
 			}
 			if(animationData != null)
 			{
-				setInitMediaTable("initAnimationTable",animationData);
+				setInitMediaDiv("initAnimationDiv",animationData);
 			}
 			
+			//先将展示界面隐藏，然后再展示
 			$("#showMediaDiv").css("display","inline");
 		}
 	
 		<%-- 具体的将初始化media的table赋值--%>
-		function setInitMediaTable(id,mediatData)
+		function setInitMediaDiv(id,mediatData)
 		{
 			if(mediatData != null)
 			{
-				var $initMediaTable = $("#"+id);
-				showMediaTable($initMediaTable,mediatData);
+				var $initMediaDiv = $("#"+id);
+				showMediaDiv($initMediaDiv,mediatData);
 			}
 		}
 	
@@ -77,31 +79,20 @@
 
 </head>
 <body>
-	<%-- 影视展示  --%>
-	<div id="showMediaDiv" style="background-color:rgb(241, 242, 243);display:none;" align="center">
-		<table id="initMovieTable" class="initMeiaTable">
-			<thead>
-				<tr >
-					<td colspan="5" style="font-size:20px;font-family:Microsoft YaHei">电影资源</td>
-				</tr>
-			</thead>
-		</table>
-		<br/>
-		<table id="initTvTable" class="initMeiaTable">
-			<thead>
-				<tr>
-					<td colspan="5" style="font-size:20px;font-family:Microsoft YaHei">电视剧资源</td>
-				<tr>
-			</thead>
-		</table>
-		<br/>
-		<table id="initAnimationTable" class="initMeiaTable">
-			<thead>
-				<tr>
-					<td colspan="5" style="font-size:20px;font-family:Microsoft YaHei">动漫资源</td>
-				<tr>
-			</thead>
-		</table>
+	<div id="showMediaDiv" style="display:none">
+		<%-- 影视展示  --%>
+		<div class="container">
+			<div class="row initMediaTypeDiv">电影资源</div>
+			<div id="initMovieDiv" class="row"></div>
+		</div>
+		<div class="container">
+			<div class="row initMediaTypeDiv">电视剧资源</div>
+			<div id="initTvDiv" class="row"></div>
+		</div>
+		<div class="container">
+			<div class="row initMediaTypeDiv">动漫资源</div>
+			<div id="initAnimationDiv" class="row"></div>
+		</div>
 	</div>
 </body>
 </html>
