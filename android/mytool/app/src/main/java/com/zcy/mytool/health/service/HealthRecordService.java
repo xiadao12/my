@@ -14,10 +14,10 @@ public class HealthRecordService {
     /**
      * 创建记录
      *
-     * @param record
+     * @param healthRecord
      * @return
      */
-    public HealthRecord create(HealthRecord record) {
+    public HealthRecord create(HealthRecord healthRecord) {
         return null;
     }
 
@@ -31,8 +31,24 @@ public class HealthRecordService {
         return null;
     }
 
-    public List<HealthRecord> query(HealthRecordFilter healthRecordFilter){
+    /**
+     * 修改
+     *
+     * @param healthRecord
+     * @return
+     */
+    public HealthRecord update(HealthRecord healthRecord) {
         return null;
     }
+
+    /**
+     * 查询
+     * @param healthRecordFilter
+     * @return
+     */
+    public List<HealthRecord> query(HealthRecordFilter healthRecordFilter) {
+        return null;
+    }
+
 
 }
