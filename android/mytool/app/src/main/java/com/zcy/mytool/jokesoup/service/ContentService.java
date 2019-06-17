@@ -1,4 +1,4 @@
-package com.zcy.mytool.service.jokesoup;
+package com.zcy.mytool.jokesoup.service;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
