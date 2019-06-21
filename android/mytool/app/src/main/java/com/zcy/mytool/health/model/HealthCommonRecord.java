@@ -5,17 +5,17 @@ package com.zcy.mytool.health.model;
  */
 public class HealthCommonRecord {
     // 健康类型, 1 food, 2 exercise
-    private Enum HealthType;
+    private HealthTypeEnum healthTypeEnum;
 
     // 内容
     private String content;
 
-    public Enum getHealthType() {
-        return HealthType;
+    public HealthTypeEnum getHealthTypeEnum() {
+        return healthTypeEnum;
     }
 
-    public void setHealthType(Enum healthType) {
-        HealthType = healthType;
+    public void setHealthTypeEnum(HealthTypeEnum healthTypeEnum) {
+        this.healthTypeEnum = healthTypeEnum;
     }
 
     public String getContent() {

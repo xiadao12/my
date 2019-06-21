@@ -21,6 +21,26 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 初始化基础界面
+        initBaseView();
+
+        // sqlite连接调试
+        SQLiteStudioService.instance().start(this);
+
+        // 初始化jokesoup
+        // JokeSoupService.instance().init(this);
+
+        // 初始化health
+        HealthService.instance().init(this);
+
+
+    }
+
+    /**
+     * 初始化基础界面
+     */
+    private void initBaseView(){
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,15 +61,6 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-        // 初始化jokesoup
-        // JokeSoupService.instance().init(this);
-
-        // 初始化health
-        HealthService.instance().init(this);
-
-        // sqlite连接调试
-        SQLiteStudioService.instance().start(this);
     }
 
     @Override
@@ -90,7 +101,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+/*        if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
@@ -102,10 +113,13 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
-        }
+        }*/
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 }

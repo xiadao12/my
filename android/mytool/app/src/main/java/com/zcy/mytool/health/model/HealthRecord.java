@@ -1,18 +1,20 @@
 package com.zcy.mytool.health.model;
 
-import java.util.Date;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class HealthRecord extends HealthCommonRecord{
+import java.util.Date;
+
+public class HealthRecord extends HealthCommonRecord {
 
     // 时间，因为有可能是多个，所以以集合方式记录
-    private List<Date> dates;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    private Date createTime;
 
-    public List<Date> getDates() {
-        return dates;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setDates(List<Date> dates) {
-        this.dates = dates;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

@@ -6,24 +6,19 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class HealthDatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String CREATE_BOOK = "create table Book ("
-            + "id integer primary key autoincrement, "
-            + "bname text,"
-            + "authod text, "
-            + "price real, "
-            + "pages integer)";
+    public static SQLiteDatabase db;
 
     public static final String TABLE_CREATE_health_record_food = "create table health_record_food (\n" +
             "    id integer not null primary key autoincrement,\n" +
             "    health_type integer not null,  -- 类型\n" +
             "    content text not null, -- 内容\n" +
-            "    dates timestamp); -- 记录时间\n";
+            "    create_time timestamp) -- 记录时间";
 
     public static final String TABLE_CREATE_health_record_exercise = "create table health_record_exercise (\n" +
             "    id integer not null primary key autoincrement,\n" +
             "    health_type integer not null,  -- 类型\n" +
             "    content text not null, -- 内容\n" +
-            "    dates timestamp); -- 记录时间";
+            "    create_time timestamp); -- 记录时间";
 
     /**
      * @param context 上下文

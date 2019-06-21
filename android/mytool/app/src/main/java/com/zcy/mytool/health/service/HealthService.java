@@ -1,7 +1,11 @@
 package com.zcy.mytool.health.service;
 
+import android.widget.Button;
+
 import com.zcy.mytool.MainActivity;
+import com.zcy.mytool.R;
 import com.zcy.mytool.health.db.HealthDatabaseHelper;
+import com.zcy.mytool.health.listener.AddFoodRecordOnClickListener;
 
 public class HealthService {
 
@@ -32,7 +36,16 @@ public class HealthService {
     public void init(MainActivity mainActivity) {
         // 初始化数据库
         HealthDatabaseHelper healthDatabaseHelper = new HealthDatabaseHelper(mainActivity);
-        healthDatabaseHelper.getWritableDatabase();
+        HealthDatabaseHelper.db = healthDatabaseHelper.getWritableDatabase();
+
+        /*
+        点击按钮添加记录
+         */
+        // 餐饮记录按钮事件
+        Button addFoodRecordButton = mainActivity.findViewById(R.id.health_addExerciseRecord);
+        if (addFoodRecordButton != null) {
+            addFoodRecordButton.setOnClickListener(new AddFoodRecordOnClickListener());
+        }
     }
 
 }
