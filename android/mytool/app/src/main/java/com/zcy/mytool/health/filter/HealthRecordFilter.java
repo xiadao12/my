@@ -1,4 +1,6 @@
-package com.zcy.mytool.health;
+package com.zcy.mytool.health.filter;
+
+import com.zcy.mytool.health.model.HealthTypeEnum;
 
 import java.util.Date;
 import java.util.Set;
@@ -21,7 +23,7 @@ public class HealthRecordFilter {
     /**
      * 健康类型
      */
-    private Set<Integer> HealthType;
+    private Set<HealthTypeEnum> HealthType;
 
     /**
      * 开始时间
@@ -49,11 +51,11 @@ public class HealthRecordFilter {
         this.ids = ids;
     }
 
-    public Set<Integer> getHealthType() {
+    public Set<HealthTypeEnum> getHealthType() {
         return HealthType;
     }
 
-    public void setHealthType(Set<Integer> healthType) {
+    public void setHealthType(Set<HealthTypeEnum> healthType) {
         HealthType = healthType;
     }
 

@@ -1,6 +1,6 @@
 package com.zcy.mytool.health.service;
 
-import com.zcy.mytool.health.HealthRecordFilter;
+import com.zcy.mytool.health.filter.HealthRecordFilter;
 import com.zcy.mytool.health.model.HealthRecord;
 
 import java.util.List;
@@ -43,6 +43,7 @@ public class HealthRecordService {
 
     /**
      * 查询
+     *
      * @param healthRecordFilter
      * @return
      */

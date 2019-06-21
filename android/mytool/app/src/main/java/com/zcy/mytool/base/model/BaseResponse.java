@@ -1,4 +1,4 @@
-package com.zcy.mytool.base.core;
+package com.zcy.mytool.base.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

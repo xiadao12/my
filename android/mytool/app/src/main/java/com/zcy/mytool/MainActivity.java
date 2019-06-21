@@ -11,6 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
+import com.zcy.mytool.health.service.HealthService;
+
+import pl.com.salsoft.sqlitestudioremote.SQLiteStudioService;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -38,19 +42,14 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Todo
         // 初始化jokesoup
-/*        final TextView jokesoupContentView = findViewById(R.id.id_jokesoup_content);
-        jokesoupContentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                jokesoupContentView.setText(ContentService.getInstance().getNextContent());
+        // JokeSoupService.instance().init(this);
 
-            }
-        });*/
-
-        // todo
         // 初始化health
+        HealthService.instance().init(this);
+
+        // sqlite连接调试
+        SQLiteStudioService.instance().start(this);
     }
 
     @Override
