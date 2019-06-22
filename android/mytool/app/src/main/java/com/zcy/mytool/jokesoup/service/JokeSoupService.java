@@ -1,9 +1,9 @@
 package com.zcy.mytool.jokesoup.service;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.zcy.mytool.MainActivity;
 import com.zcy.mytool.R;
 
 public class JokeSoupService {
@@ -24,10 +24,10 @@ public class JokeSoupService {
     /**
      * 初始化
      *
-     * @param mainActivity
+     * @param activity
      */
-    public void init(MainActivity mainActivity) {
-        TextView jokesoupContentView = mainActivity.findViewById(R.id.id_jokesoup_content);
+    public void init(Activity activity) {
+        TextView jokesoupContentView = activity.findViewById(R.id.id_jokesoup_content);
         jokesoupContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

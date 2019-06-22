@@ -17,9 +17,24 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />-->
 
-    <include
-        layout="@layout/health_content_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <Button
+        android:id="@+id/health_addFoodRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加饮食"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="307dp"
+        tools:layout_editor_absoluteY="386dp" />
+
+    <Button
+        android:id="@+id/health_addExerciseRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加锻炼"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="211dp" />
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="290dp" />
 
 </android.support.constraint.ConstraintLayout>

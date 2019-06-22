@@ -1,11 +1,13 @@
 package com.zcy.mytool.health.service;
 
+import android.app.Activity;
+import android.view.View;
 import android.widget.Button;
 
-import com.zcy.mytool.MainActivity;
 import com.zcy.mytool.R;
 import com.zcy.mytool.health.db.HealthDatabaseHelper;
-import com.zcy.mytool.health.listener.AddFoodRecordOnClickListener;
+import com.zcy.mytool.health.listener.HealthAddFoodRecordButtonListener;
+import com.zcy.mytool.health.listener.HealthShowGraidButtonListener;
 
 public class HealthService {
 
@@ -31,20 +33,34 @@ public class HealthService {
     /**
      * 初始化
      *
-     * @param mainActivity 上下文
+     * @param activity 上下文
      */
-    public void init(MainActivity mainActivity) {
+    public void init(Activity activity) {
         // 初始化数据库
-        HealthDatabaseHelper healthDatabaseHelper = new HealthDatabaseHelper(mainActivity);
+        HealthDatabaseHelper healthDatabaseHelper = new HealthDatabaseHelper(activity);
         HealthDatabaseHelper.db = healthDatabaseHelper.getWritableDatabase();
 
         /*
         点击按钮添加记录
          */
         // 餐饮记录按钮事件
-        Button addFoodRecordButton = mainActivity.findViewById(R.id.health_addExerciseRecord);
+        Button addFoodRecordButton = activity.findViewById(R.id.health_addExerciseRecord);
         if (addFoodRecordButton != null) {
-            addFoodRecordButton.setOnClickListener(new AddFoodRecordOnClickListener());
+            addFoodRecordButton.setOnClickListener(new HealthAddFoodRecordButtonListener());
+        }
+
+        // 展示列表事件
+        Button showGraidButton = activity.findViewById(R.id.health_showGraid);
+        if (showGraidButton != null) {
+            showGraidButton.setOnClickListener(new HealthShowGraidButtonListener(activity));
+        }
+
+        /*
+        显示表数据
+         */
+        HealthRecordService.instance().query(null);
+        View contentGrid = activity.findViewById(R.id.health_contentGrid);
+        if (contentGrid != null) {
         }
     }
 

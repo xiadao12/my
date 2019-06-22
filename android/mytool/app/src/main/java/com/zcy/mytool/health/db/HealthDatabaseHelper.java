@@ -8,17 +8,19 @@ public class HealthDatabaseHelper extends SQLiteOpenHelper {
 
     public static SQLiteDatabase db;
 
-    public static final String TABLE_CREATE_health_record_food = "create table health_record_food (\n" +
+    public static final String TABLE_CREATE_health_record = "create table health_record (\n" +
             "    id integer not null primary key autoincrement,\n" +
             "    health_type integer not null,  -- 类型\n" +
-            "    content text not null, -- 内容\n" +
+            "    title varchar not null,\n" +
             "    create_time timestamp) -- 记录时间";
+
+    public static final String TABLE_CREATE_health_record_food = "create table health_record_food (\n" +
+            "    id integer not null primary key autoincrement,\n" +
+            "    record_id integer not null)";
 
     public static final String TABLE_CREATE_health_record_exercise = "create table health_record_exercise (\n" +
             "    id integer not null primary key autoincrement,\n" +
-            "    health_type integer not null,  -- 类型\n" +
-            "    content text not null, -- 内容\n" +
-            "    create_time timestamp); -- 记录时间";
+            "    record_id integer not null)";
 
     /**
      * @param context 上下文
@@ -39,7 +41,7 @@ public class HealthDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         // db.openOrCreateDatabase("/sql/health/create.sql", null);
-
+        db.execSQL(TABLE_CREATE_health_record);
         db.execSQL(TABLE_CREATE_health_record_food);
         db.execSQL(TABLE_CREATE_health_record_exercise);
     }

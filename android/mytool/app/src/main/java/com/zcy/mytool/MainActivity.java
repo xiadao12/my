@@ -2,13 +2,11 @@ package com.zcy.mytool;
 
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import com.zcy.mytool.health.service.HealthService;
@@ -40,10 +38,10 @@ public class MainActivity extends AppCompatActivity
     /**
      * 初始化基础界面
      */
-    private void initBaseView(){
+    private void initBaseView() {
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+/*        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
 
 /*        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -54,13 +52,13 @@ public class MainActivity extends AppCompatActivity
             }
         });*/
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+/*        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);*/
     }
 
     @Override
@@ -101,6 +99,10 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        if (id == R.id.health_menu) {
+
+        }
+
 /*        if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
@@ -119,7 +121,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
 }

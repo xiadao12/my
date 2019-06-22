@@ -16,6 +16,20 @@ public enum HealthTypeEnum {
         this.value = value;
     }
 
+    public static HealthTypeEnum getEnum(int code) {
+        HealthTypeEnum[] var1 = values();
+        int var2 = var1.length;
+
+        for(int var3 = 0; var3 < var2; ++var3) {
+            HealthTypeEnum healthTypeEnum = var1[var3];
+            if (healthTypeEnum.getCode() == code) {
+                return healthTypeEnum;
+            }
+        }
+
+        return null;
+    }
+
     public Integer getCode() {
         return code;
     }
