@@ -1,7 +1,6 @@
 package com.zcy.mytool.health.service;
 
 import android.app.Activity;
-import android.view.View;
 import android.widget.Button;
 
 import com.zcy.mytool.R;
@@ -58,10 +57,10 @@ public class HealthService {
         /*
         显示表数据
          */
-        HealthRecordService.instance().query(null);
+/*        HealthRecordService.instance().query(null);
         View contentGrid = activity.findViewById(R.id.health_contentGrid);
         if (contentGrid != null) {
-        }
+        }*/
     }
 
 }

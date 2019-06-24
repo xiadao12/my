@@ -26,10 +26,12 @@
         android:layout_columnSpan="4"/>
 
     <GridLayout
-        android:id="@+id/health_contentGrid"
+        android:id="@+id/health_recordGrid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="4"
+        android:columnCount="2"
         android:layout_columnSpan="4"/>
 
+<!--    <include layout="@layout/health_recordtable"/>-->
+    
 </GridLayout>
