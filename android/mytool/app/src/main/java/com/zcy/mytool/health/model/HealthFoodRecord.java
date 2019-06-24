@@ -17,7 +17,7 @@ public class HealthFoodRecord extends HealthRecord {
      * @param title
      * @param createTime
      */
-    public HealthFoodRecord(Integer id, HealthTypeEnum healthTypeEnum, String title, Date createTime) {
+    public HealthFoodRecord(Long id, HealthTypeEnum healthTypeEnum, String title, Date createTime) {
         super(id, healthTypeEnum, title, createTime);
     }
 

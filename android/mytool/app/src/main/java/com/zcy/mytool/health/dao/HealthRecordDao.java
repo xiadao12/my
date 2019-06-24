@@ -3,14 +3,18 @@ package com.zcy.mytool.health.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+import com.zcy.mytool.base.core.SqlUtil;
 import com.zcy.mytool.health.db.HealthDatabaseHelper;
 import com.zcy.mytool.health.filter.HealthRecordFilter;
 import com.zcy.mytool.health.model.HealthRecord;
 import com.zcy.mytool.health.model.HealthTypeEnum;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -76,7 +80,7 @@ public class HealthRecordDao {
      * @param ids
      * @return
      */
-    public Integer delete(Set<Integer> ids) {
+    public Integer delete(Set<Long> ids) {
         return null;
     }
 
@@ -99,6 +103,46 @@ public class HealthRecordDao {
     public List<HealthRecord> query(HealthRecordFilter healthRecordFilter) {
 
         String querySql = "select id,health_type,title,create_time from health_record";
+
+        /*
+        条件查询
+         */
+        querySql = SqlUtil.buildWhereSql(querySql, healthRecordFilter);
+
+        // 根据类型查询
+        if (healthRecordFilter.getHealthType() != null && healthRecordFilter.getHealthType().size() > 0) {
+            Set<Integer> healthTypes = new HashSet<>();
+            for (HealthTypeEnum healthTypeEnum : healthRecordFilter.getHealthType()) {
+                healthTypes.add(healthTypeEnum.getCode());
+            }
+            if (healthTypes.size() > 0) {
+                String healthTypesString = StringUtils.join(healthTypes, ',');
+                querySql = querySql + String.format(" health_type in (%s)", healthTypesString);
+            }
+
+        }
+
+        if (healthRecordFilter.getId() != null) {
+            querySql = querySql + " and id=" + healthRecordFilter.getPageSize();
+        }
+
+        if (healthRecordFilter.getId() != null) {
+            querySql = querySql + " and id=" + healthRecordFilter.getPageNum();
+        }
+
+        if (healthRecordFilter.getId() != null) {
+            querySql = querySql + " and id=" + healthRecordFilter.getId();
+        }
+
+        if (healthRecordFilter.getId() != null) {
+            querySql = querySql + " and id=" + healthRecordFilter.getId();
+        }
+
+        if (healthRecordFilter.getId() != null) {
+            querySql = querySql + " and id=" + healthRecordFilter.getId();
+        }
+
+
         String[] values = {};
 
         Cursor cursor = HealthDatabaseHelper.db.rawQuery(querySql, values);
@@ -115,7 +159,7 @@ public class HealthRecordDao {
          * 存放查询出来的数据
          */
         List<HealthRecord> healthRecords = new ArrayList<>();
-        int id;
+        long id;
         int healthType;
         String title;
         Long createTimeLong;

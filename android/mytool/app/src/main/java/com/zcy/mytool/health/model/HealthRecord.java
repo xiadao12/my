@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class HealthRecord {
 
-    private Integer id;
+    private Long id;
 
     // 健康类型, 1 food, 2 exercise
     private HealthTypeEnum healthTypeEnum;
@@ -14,7 +14,11 @@ public class HealthRecord {
     // 标题
     private String title;
 
-    // 时间，因为有可能是多个，所以以集合方式记录
+    // todo 表结构需要新增
+    // 创建时间
+    private Date createDate;
+
+    // 创建时间，因为有可能是多个，所以以集合方式记录
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
@@ -31,18 +35,19 @@ public class HealthRecord {
      * @param title
      * @param createTime
      */
-    public HealthRecord(Integer id, HealthTypeEnum healthTypeEnum, String title, Date createTime) {
+    public HealthRecord(Long id, HealthTypeEnum healthTypeEnum, String title, Date createTime) {
         this.id = id;
         this.healthTypeEnum = healthTypeEnum;
         this.title = title;
+        this.createDate = createDate;
         this.createTime = createTime;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -60,6 +65,14 @@ public class HealthRecord {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public Date getCreateTime() {

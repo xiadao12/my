@@ -1,55 +1,19 @@
 package com.zcy.mytool.health.filter;
 
+import com.zcy.mytool.base.filter.BaseFilter;
 import com.zcy.mytool.health.model.HealthTypeEnum;
 
-import java.util.Date;
 import java.util.Set;
 
 /**
  * 记录检索条件
  */
-public class HealthRecordFilter {
-
-    /**
-     * id 检索
-     */
-    private Integer id;
-
-    /**
-     * id 集合检索
-     */
-    private Set<Integer> ids;
+public class HealthRecordFilter extends BaseFilter {
 
     /**
      * 健康类型
      */
     private Set<HealthTypeEnum> HealthType;
-
-    /**
-     * 开始时间
-     */
-    private Date startTime;
-
-    /**
-     * 结束时间
-     */
-    private Date endTime;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Set<Integer> getIds() {
-        return ids;
-    }
-
-    public void setIds(Set<Integer> ids) {
-        this.ids = ids;
-    }
 
     public Set<HealthTypeEnum> getHealthType() {
         return HealthType;
@@ -57,21 +21,5 @@ public class HealthRecordFilter {
 
     public void setHealthType(Set<HealthTypeEnum> healthType) {
         HealthType = healthType;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 }

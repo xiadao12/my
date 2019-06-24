@@ -17,7 +17,7 @@ public class HealthExerciseRecord extends HealthRecord {
      * @param title
      * @param createTime
      */
-    public HealthExerciseRecord(Integer id, HealthTypeEnum healthTypeEnum, String title, Date createTime) {
+    public HealthExerciseRecord(Long id, HealthTypeEnum healthTypeEnum, String title, Date createTime) {
         super(id, healthTypeEnum, title, createTime);
     }
 
