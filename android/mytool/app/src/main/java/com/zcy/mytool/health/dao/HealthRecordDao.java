@@ -107,41 +107,22 @@ public class HealthRecordDao {
         /*
         条件查询
          */
-        querySql = SqlUtil.buildWhereSql(querySql, healthRecordFilter);
+        if (healthRecordFilter != null) {
 
-        // 根据类型查询
-        if (healthRecordFilter.getHealthType() != null && healthRecordFilter.getHealthType().size() > 0) {
-            Set<Integer> healthTypes = new HashSet<>();
-            for (HealthTypeEnum healthTypeEnum : healthRecordFilter.getHealthType()) {
-                healthTypes.add(healthTypeEnum.getCode());
+            querySql = SqlUtil.buildWhereSql(querySql, healthRecordFilter);
+
+            // 根据类型查询
+            if (healthRecordFilter.getHealthType() != null && healthRecordFilter.getHealthType().size() > 0) {
+                Set<Integer> healthTypes = new HashSet<>();
+                for (HealthTypeEnum healthTypeEnum : healthRecordFilter.getHealthType()) {
+                    healthTypes.add(healthTypeEnum.getCode());
+                }
+                if (healthTypes.size() > 0) {
+                    String healthTypesString = StringUtils.join(healthTypes, ',');
+                    querySql = querySql + String.format(" health_type in (%s)", healthTypesString);
+                }
             }
-            if (healthTypes.size() > 0) {
-                String healthTypesString = StringUtils.join(healthTypes, ',');
-                querySql = querySql + String.format(" health_type in (%s)", healthTypesString);
-            }
-
         }
-
-        if (healthRecordFilter.getId() != null) {
-            querySql = querySql + " and id=" + healthRecordFilter.getPageSize();
-        }
-
-        if (healthRecordFilter.getId() != null) {
-            querySql = querySql + " and id=" + healthRecordFilter.getPageNum();
-        }
-
-        if (healthRecordFilter.getId() != null) {
-            querySql = querySql + " and id=" + healthRecordFilter.getId();
-        }
-
-        if (healthRecordFilter.getId() != null) {
-            querySql = querySql + " and id=" + healthRecordFilter.getId();
-        }
-
-        if (healthRecordFilter.getId() != null) {
-            querySql = querySql + " and id=" + healthRecordFilter.getId();
-        }
-
 
         String[] values = {};
 

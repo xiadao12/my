@@ -8,6 +8,10 @@ public class SqlUtil {
 
     public static String buildWhereSql(String sql, BaseFilter baseFilter) {
 
+        if (sql == null || baseFilter == null) {
+            return sql;
+        }
+
         sql = sql + " where 1=1";
 
         // id
